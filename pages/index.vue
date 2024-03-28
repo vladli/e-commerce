@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <Card style="width: 25rem; overflow: hidden">
+    <Card style="overflow: hidden">
       <template #title>
         Advanced Card
       </template>

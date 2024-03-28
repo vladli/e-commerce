@@ -5,8 +5,8 @@ export const mainMenu = [
     icon: "material-symbols:dashboard",
   },
   {
-    name: "Home 2",
-    path: "/2",
-    icon: "material-symbols:dashboard",
+    name: "About",
+    path: "/about",
+    icon: "mdi:about",
   },
 ];
