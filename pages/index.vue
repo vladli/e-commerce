@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <Card style="overflow: hidden">
+    <Card>
       <template #title>
         Advanced Card
       </template>
@@ -18,7 +18,7 @@
         </p>
       </template>
       <template #footer>
-        <div class="flex gap-3 mt-1">
+        <div class="mt-1 flex gap-3">
           <Button
             label="Cancel"
             severity="secondary"

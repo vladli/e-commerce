@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "nuxt-icon",
     "@nuxtjs/color-mode",
+    "@sidebase/nuxt-auth",
   ],
   colorMode: {
     classSuffix: "",
@@ -31,6 +32,13 @@ export default defineNuxtConfig({
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
+    },
+  },
+  auth: {
+    isEnabled: true,
+
+    provider: {
+      type: "authjs",
     },
   },
 });

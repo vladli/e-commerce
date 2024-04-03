@@ -1,9 +1,9 @@
 <template>
   <div class="flex min-h-dvh flex-col">
     <LayoutHeader />
-    <div class="flex grow gap-2 bg-surface-100 p-4 pt-24 dark:bg-surface-800">
+    <div class="flex grow gap-2 p-4 pt-24">
       <LayoutSidebar class="w-64 flex-none" />
-      <main class="grow text-surface-700 dark:text-surface-0">
+      <main class="grow">
         <slot />
       </main>
     </div>

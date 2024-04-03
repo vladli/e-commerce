@@ -1,5 +1,4 @@
 <script setup>
-import { twMerge } from "tailwind-merge";
 const colorMode = useColorMode();
 
 function toggleTheme() {
@@ -9,12 +8,16 @@ function toggleTheme() {
 
 <template>
   <Button
+    severity="secondary"
     rounded
-    outlined
-    class="!p-3"
+    text
+    class="!p-2"
     @click="toggleTheme"
   >
-    <Icon name="mdi:theme-light-dark" />
+    <Icon
+      name="mdi:theme-light-dark"
+      size="1.5em"
+    />
   </Button>
 </template>
 Button

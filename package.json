@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@nuxt/image": "^1.4.0",
-    "nuxt": "^3.11.1",
     "primevue": "^3.50.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
@@ -22,8 +21,11 @@
     "@nuxt/eslint-config": "^0.2.0",
     "@nuxtjs/color-mode": "^3.3.3",
     "@nuxtjs/tailwindcss": "^6.11.4",
+    "@sidebase/nuxt-auth": "^0.7.0",
     "clsx": "^2.1.0",
     "eslint-plugin-tailwindcss": "^3.15.1",
+    "next-auth": "^4.21.1",
+    "nuxt": "^3.11.1",
     "nuxt-icon": "^0.6.10",
     "nuxt-primevue": "^0.3.1",
     "tailwind-merge": "^2.2.2"
