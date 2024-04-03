@@ -18,7 +18,7 @@ export const mainMenu: MenuItem[] = [
       {
         name: "About",
         path: "/about",
-        icon: "material-symbols:dashboard",
+        icon: "material-symbols:info",
       },
     ],
   },

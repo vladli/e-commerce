@@ -23,6 +23,7 @@
     "@nuxtjs/tailwindcss": "^6.11.4",
     "@sidebase/nuxt-auth": "^0.7.0",
     "clsx": "^2.1.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-tailwindcss": "^3.15.1",
     "next-auth": "^4.21.1",
     "nuxt": "^3.11.1",

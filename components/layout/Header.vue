@@ -17,7 +17,7 @@ const visible = ref(false);
       <LayoutSideBarMobile v-model:visible="visible" />
     </div>
 
-    <div class="flex items-center">
+    <div class="flex items-center gap-2">
       <LayoutThemeSwitcher />
       <LayoutAuthButton />
     </div>

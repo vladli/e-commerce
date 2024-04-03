@@ -3,23 +3,29 @@ const {
   status,
   data,
 
-  getSession,
   signIn,
-  signOut,
 } = useAuth();
+
+const menu = ref();
+
+const toggle = (event) => {
+  menu.value.toggle(event);
+};
 </script>
 <template>
-  {{ data?.user?.email }}
-  <Button
-    v-if="status === 'authenticated'"
-    size="small"
-    @click="signOut"
-  >
-    Log Out
-  </Button>
+  <div v-if="status === 'authenticated'">
+    <Avatar
+      :image="data?.user?.image || ''"
+      aria-haspopup="true"
+      shape="circle"
+      size="large"
+      class="cursor-pointer"
+      @click="toggle"
+    />
+    <LayoutUserMenu v-model:menu="menu" />
+  </div>
   <Button
     v-else
-    size="small"
     @click="signIn"
   >
     Log In
