@@ -3,9 +3,6 @@ module.exports = {
   extends: [
     "@nuxt/eslint-config",
     "plugin:tailwindcss/recommended",
-    "prettier",
+    "plugin:prettier/recommended",
   ],
-  rules: {
-    "vue/multi-word-component-names": "off",
-  },
 };

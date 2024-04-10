@@ -16,12 +16,15 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "@nuxtjs/color-mode",
     "@sidebase/nuxt-auth",
+    "nuxt-security",
   ],
+  components: [{ path: "~/views", pathPrefix: true }, "~/components"],
+
   colorMode: {
     classSuffix: "",
   },
   primevue: {
-    cssLayerOrder: "tailwind-base, primevue, tailwind-utilities",
+    // cssLayerOrder: "tailwind-base, primevue, tailwind-utilities",
     options: {
       unstyled: true,
       ripple: true,
@@ -39,6 +42,15 @@ export default defineNuxtConfig({
 
     provider: {
       type: "authjs",
+    },
+  },
+  security: {
+    headers: {
+      crossOriginEmbedderPolicy: false,
+      contentSecurityPolicy: {
+        "img-src": false,
+        "script-src": false,
+      },
     },
   },
 });

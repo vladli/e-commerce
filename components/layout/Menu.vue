@@ -1,6 +1,4 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="mt-4 overflow-y-auto">
@@ -17,7 +15,7 @@
             enterClass: 'hidden',
             enterActiveClass: 'slidedown',
             leaveToClass: 'hidden',
-            leaveActiveClass: 'slideup'
+            leaveActiveClass: 'slideup',
           }"
           class="flex cursor-pointer items-center justify-between rounded-md p-3 text-surface-600 dark:text-surface-400"
         >
@@ -52,7 +50,7 @@
                   enterClass: 'hidden',
                   enterActiveClass: 'slidedown',
                   leaveToClass: 'hidden',
-                  leaveActiveClass: 'slideup'
+                  leaveActiveClass: 'slideup',
                 }"
                 class="flex cursor-pointer items-center rounded-md p-3 text-surface-700 transition-colors duration-200 hover:bg-surface-100 dark:text-surface-0/80 dark:hover:bg-surface-700"
               >

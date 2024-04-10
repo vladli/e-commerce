@@ -7,6 +7,17 @@
   @tailwind utilities;
 }
 
+@layer components {
+  h1 {
+    @apply text-3xl font-bold;
+  }
+  h2 {
+    @apply text-2xl font-bold;
+  }
+  h3 {
+    @apply text-xl font-bold;
+  }
+}
 :root {
   font-family: "Inter var", sans-serif;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
@@ -54,10 +65,6 @@
   --card-border: 1px solid transparent;
   --card-bg: rgb(var(--surface-300));
   --border-color: rgba(255, 255, 255, 0.1);
-}
-
-html {
-  font-size: 14px;
 }
 
 body {

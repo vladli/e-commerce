@@ -22,4 +22,15 @@ export const mainMenu: MenuItem[] = [
       },
     ],
   },
+  {
+    name: "Admin Menu",
+    icon: "",
+    children: [
+      {
+        name: "All Products",
+        icon: "material-symbols:add",
+        path: "/admin/products/dashboard",
+      },
+    ],
+  },
 ];
