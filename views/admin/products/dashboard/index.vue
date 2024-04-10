@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { data: products, refresh } = await useFetch("/api/products");
+
 const activeId = ref<string | undefined>(undefined);
 const visible = ref(false);
 const removeProductVisible = ref(false);
