@@ -8,10 +8,10 @@ function toggleTheme() {
 
 <template>
   <Button
-    severity="secondary"
-    rounded
-    text
     class="!p-2"
+    rounded
+    severity="secondary"
+    text
     @click="toggleTheme"
   >
     <Icon

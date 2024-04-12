@@ -33,12 +33,12 @@
             <NuxtLink
               v-if="!child.children"
               v-ripple
-              :to="child.path"
               class="flex cursor-pointer items-center rounded-md p-3 text-surface-700 transition-colors duration-200 hover:bg-surface-100 dark:text-surface-0/80 dark:hover:bg-surface-700"
+              :to="child.path"
             >
               <Icon
-                :name="child.icon"
                 class="mr-2"
+                :name="child.icon"
               />
               <span class="font-medium">{{ child.name }}</span>
             </NuxtLink>
@@ -55,13 +55,13 @@
                 class="flex cursor-pointer items-center rounded-md p-3 text-surface-700 transition-colors duration-200 hover:bg-surface-100 dark:text-surface-0/80 dark:hover:bg-surface-700"
               >
                 <Icon
-                  :name="child.icon"
                   class="mr-2"
+                  :name="child.icon"
                 />
                 <span class="font-medium">{{ child.name }}</span>
                 <Icon
-                  name="ion:chevron-down"
                   class="ml-auto"
+                  name="ion:chevron-down"
                 />
               </div>
               <ul
@@ -72,12 +72,12 @@
                 <li>
                   <NuxtLink
                     v-ripple
-                    :to="child2.path"
                     class="flex cursor-pointer items-center rounded-md p-3 text-surface-700 transition-colors duration-200 hover:bg-surface-100 dark:text-surface-0/80 dark:hover:bg-surface-700"
+                    :to="child2.path"
                   >
                     <Icon
-                      :name="child2.icon"
                       class="mr-2"
+                      :name="child2.icon"
                     />
                     <span class="font-medium">{{ child2.name }}</span>
                   </NuxtLink>

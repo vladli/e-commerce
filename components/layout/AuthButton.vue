@@ -3,7 +3,7 @@ const {
   status,
   data,
 
-  signIn,
+  signIn
 } = useAuth();
 
 const menu = ref();
@@ -15,11 +15,11 @@ const toggle = (event) => {
 <template>
   <div v-if="status === 'authenticated'">
     <Avatar
-      :image="data?.user?.image || ''"
       aria-haspopup="true"
+      class="cursor-pointer"
+      :image="data?.user?.image || ''"
       shape="circle"
       size="large"
-      class="cursor-pointer"
       @click="toggle"
     />
     <LayoutUserMenu v-model:menu="menu" />

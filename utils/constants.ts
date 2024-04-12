@@ -28,7 +28,7 @@ export const mainMenu: MenuItem[] = [
     children: [
       {
         name: "All Products",
-        icon: "material-symbols:add",
+        icon: "fluent-mdl2:product",
         path: "/admin/products/dashboard",
       },
     ],

@@ -3,8 +3,8 @@
     <Button
       class=""
       severity="secondary"
-      text
       size="small"
+      text
     >
       <Icon
         name="noto:shopping-cart"

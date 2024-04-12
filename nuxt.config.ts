@@ -3,12 +3,13 @@ import path from "path";
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
+
   app: {
     head: {
       title: "My Nuxt App",
     },
   },
-  css: ["~/assets/css/tailwind.css"],
+  css: ["~/assets/css/tailwind.css", "/node_modules/primeicons/primeicons.css"],
   modules: [
     "@nuxt/image",
     "nuxt-primevue",

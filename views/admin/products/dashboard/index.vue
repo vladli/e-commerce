@@ -1,45 +1,48 @@
 <script setup lang="ts">
-const { data: products, refresh } = await useFetch("/api/products");
+const { data: products, refresh } = await useFetch('/api/products');
 
-const activeId = ref<string | undefined>(undefined);
+const product = ref(undefined);
 const visible = ref(false);
 const removeProductVisible = ref(false);
 
-const removeProduct = (productId: string) => {
-  activeId.value = productId;
+const removeProduct = (productInfo: any) => {
+  product.value = productInfo;
   removeProductVisible.value = true;
 };
 </script>
 
 <template>
   <DataTable
-    :value="products"
     show-gridlines
     striped-rows
+    :value="products"
   >
     <template #header>
       <div class="flex items-center justify-between">
         <div>
           <span>Products: {{ products?.length || 0 }}</span>
         </div>
-        <IconButton
+
+        <Button
+          class="w-fit"
+          icon="pi pi-plus"
+          label="Add Product"
+          outlined
+          severity="secondary"
           size="small"
-          icon-name="material-symbols:add"
           @click="visible = true"
-        >
-          Add Product
-        </IconButton>
+        />
       </div>
     </template>
     <Column
-      sortable
       field="name"
       header="Name"
+      sortable
     />
     <Column
-      sortable
       field="price"
       header="Price"
+      sortable
     >
       <template #body="slotProps">
         {{ slotProps.data.price }}
@@ -47,26 +50,26 @@ const removeProduct = (productId: string) => {
     </Column>
     <Column
       class="max-w-10"
-      header="Status"
       field="status"
+      header="Status"
     >
       <template #body="slotProps">
         <div class="flex justify-center gap-2">
           <IconButton
-            severity="secondary"
             icon-name="material-symbols:edit"
-            rounded
             outlined
+            rounded
+            severity="secondary"
             size="small"
-            @click="console.log(slotProps.data.id)"
+            @click="console.log(slotProps.data)"
           />
           <IconButton
             icon-name="material-symbols:delete"
-            severity="danger"
-            rounded
-            @click="removeProduct(slotProps.data.id)"
             outlined
+            rounded
+            severity="danger"
             size="small"
+            @click="removeProduct(slotProps.data)"
           />
         </div>
       </template>
@@ -78,7 +81,7 @@ const removeProduct = (productId: string) => {
   />
   <AdminProductsDashboardRemoveProduct
     v-model:removeProductVisible="removeProductVisible"
+    :product="product"
     :refresh="refresh"
-    :product-id="activeId"
   />
 </template>

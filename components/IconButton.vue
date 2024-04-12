@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { ButtonProps } from "primevue/button";
+import type { ButtonProps } from 'primevue/button'
 
 interface MyInputProps extends /* @vue-ignore */ ButtonProps {
-  iconName: string;
+  iconName: string
 }
 
-defineProps<MyInputProps>();
+defineProps<MyInputProps>()
 </script>
 
 <template>

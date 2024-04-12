@@ -2,35 +2,43 @@
 const props = defineProps({
   refresh: {
     type: Function,
-    default: () => {},
-  },
+    default: () => {}
+  }
 });
 
-const visible = defineModel<boolean>("visible");
-const productName = ref("");
+const visible = defineModel<boolean>('visible');
+const productName = ref('');
 const productPrice = ref(0);
+const loading = ref(false);
 
-const addProduct = async () => {
-  await useFetch("/api/products/product", {
-    method: "POST",
-
-    body: JSON.stringify({
+async function addProduct() {
+  await $fetch('/api/products/product', {
+    method: 'POST',
+    body: {
       name: productName.value,
-      price: productPrice.value,
-    }),
+      price: productPrice.value
+    },
+    onRequest() {
+      loading.value = true;
+      console.log(1);
+    },
+    onResponse() {
+      toast.success('Product added successfully!');
+      // visible.value = false;
+      loading.value = false;
+      props.refresh();
+    }
   });
-  visible.value = false;
-  props.refresh();
-};
+}
 </script>
 
 <template>
   <Dialog
     v-model:visible="visible"
-    modal
-    header="Header"
-    :style="{ width: '50rem' }"
     :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
+    header="Header"
+    modal
+    :style="{ width: '50rem' }"
   >
     <template #header>
       <h2>Add Product</h2>
@@ -42,17 +50,18 @@ const addProduct = async () => {
       />
       <InputNumber
         v-model="productPrice"
-        placeholder="Product price"
-        mode="currency"
         currency="USD"
         locale="en-US"
+        mode="currency"
+        placeholder="Product price"
       />
     </form>
     <template #footer>
       <Button
-        label="Add"
-        icon="pi pi-check"
         autofocus
+        icon="pi pi-plus"
+        label="Add"
+        :loading="loading"
         @click="addProduct"
       />
     </template>

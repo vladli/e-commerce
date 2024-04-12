@@ -1,46 +1,75 @@
 <script setup lang="ts">
 const props = defineProps({
-  productId: {
-    type: String,
+  product: {
+    type: Object,
+    default: null
   },
   refresh: {
     type: Function,
-    default: () => {},
-  },
+    default: () => {}
+  }
 });
-const removeProductVisible = defineModel<boolean>("removeProductVisible");
+
+const productInfo = ref({
+  ID: props.product?.id,
+  Name: props.product?.name,
+  Price: props.product?.price
+});
+watch(
+  () => props.product,
+  (newValue) => {
+    productInfo.value = {
+      ID: newValue?.id,
+      Name: newValue?.name,
+      Price: newValue?.price
+    };
+  }
+);
+const removeProductVisible = defineModel<boolean>('removeProductVisible');
 
 const removeProduct = async () => {
-  await useFetch(`/api/products/product`, {
-    method: "DELETE",
-    query: { id: props.productId },
+  await $fetch(`/api/products/product`, {
+    method: 'DELETE',
+    query: { id: props.product?.id },
+    onResponse() {
+      toast.success('Product removed successfully!');
+      removeProductVisible.value = false;
+      props.refresh();
+    }
   });
-  removeProductVisible.value = false;
-  props.refresh();
 };
 </script>
 
 <template>
   <Dialog
     v-model:visible="removeProductVisible"
-    modal
-    header="Header"
-    :style="{ width: '50rem' }"
     :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
+    header="Remove product"
+    modal
+    :style="{ width: '50rem' }"
   >
-    <p>Do you want to remove product with id {{ productId }}?</p>
+    <div>
+      <h3 class="mb-3">Do you want to remove this product?</h3>
+      <p
+        v-for="(value, key) in productInfo"
+        :key="key"
+      >
+        <span class="font-bold">{{ key }}:</span>
+        {{ value }}
+      </p>
+    </div>
     <template #footer>
       <Button
-        label="Remove"
-        icon="pi pi-check"
-        @click="removeProduct"
         autofocus
+        icon="pi pi-check"
+        label="Delete"
+        @click="removeProduct"
       />
       <Button
-        label="Cancel"
         icon="pi pi-times"
-        @click="removeProductVisible = false"
+        label="Cancel"
         severity="danger"
+        @click="removeProductVisible = false"
       />
     </template>
   </Dialog>
