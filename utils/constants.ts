@@ -49,24 +49,24 @@ export const mainMenu: MenuItem[] = [
         path: '/admin/products/dashboard'
       }
     ]
-  },
-  {
-    name: 'Categories',
-    icon: '',
-    children: categories.value.map((category) => ({
-      name: category.name,
-      icon: '',
-      path: `/admin/categories/${category.code}`,
-      children: category.subCategory.map((subCategory) => ({
-        name: subCategory.name,
-        icon: '',
-        path: `/admin/categories/${category.code}/${subCategory.name}`,
-        children: subCategory.items.map((item) => ({
-          name: item.cname,
-          icon: '',
-          path: `/admin/categories/${category.code}/${subCategory.name}/${item.cname}`
-        }))
-      }))
-    }))
   }
+  // {
+  //   name: 'Categories',
+  //   icon: '',
+  //   children: categories.value.map((category) => ({
+  //     name: category.name,
+  //     icon: '',
+  //     path: `/categories/${category.code}`,
+  //     children: category.subCategory.map((subCategory) => ({
+  //       name: subCategory.name,
+  //       icon: '',
+  //       path: `/categories/${category.code}/${subCategory.name}`,
+  //       children: subCategory.items.map((item) => ({
+  //         name: item.cname,
+  //         icon: '',
+  //         path: `/categories/${category.code}/${subCategory.name}/${item.cname}`
+  //       }))
+  //     }))
+  //   }))
+  // }
 ];

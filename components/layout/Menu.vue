@@ -4,8 +4,8 @@
   <div class="mt-4 overflow-y-auto">
     <ul class="m-0 list-none px-4">
       <li
-        v-for="item in mainMenu"
-        :key="item.name"
+        v-for="(item, index) in mainMenu"
+        :key="index + item.name"
       >
         <div
           v-ripple

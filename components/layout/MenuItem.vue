@@ -10,8 +10,8 @@ defineProps({
 <template>
   <ul class="m-0 list-none overflow-hidden p-0 pl-1">
     <li
-      v-for="child in item"
-      :key="child.name"
+      v-for="(child, index) in item"
+      :key="index"
     >
       <div
         v-if="child.children"
@@ -32,14 +32,14 @@ defineProps({
         <LayoutMenuItem :item="child.children" />
       </template>
       <template v-else>
-        <li :key="child.name">
+        <div :key="child.name">
           <NuxtLink
             class="flex cursor-pointer items-center rounded-md p-3 text-surface-700 transition-colors duration-200 hover:bg-surface-100 dark:text-surface-0/80 dark:hover:bg-surface-700"
             :to="child.path"
           >
             {{ child.name }}
           </NuxtLink>
-        </li>
+        </div>
       </template>
     </li>
   </ul>
