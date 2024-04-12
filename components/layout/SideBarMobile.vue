@@ -31,7 +31,7 @@ const { status, data } = useAuth();
           v-if="status == 'authenticated'"
           class="mt-auto"
         >
-          <hr class="mx-3 mb-3 border-t-2 border-surface-200 dark:border-surface-700" />
+          <hr class="mx-3 mb-3 border-t-2 border-surface-200 dark:border-surface-700">
           <a
             v-ripple
             class="m-3 flex cursor-pointer items-center gap-2 rounded-md p-3 text-surface-700 transition-colors duration-200 hover:bg-surface-100 dark:text-surface-0/80 dark:hover:bg-surface-700"

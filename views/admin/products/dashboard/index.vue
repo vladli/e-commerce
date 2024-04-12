@@ -57,7 +57,11 @@ const removeProduct = (productInfo: any) => {
       field="category"
       header="Category"
       sortable
-    />
+    >
+      <template #body="slotProps">
+        {{ getCnameByCode(slotProps.data.category) }}
+      </template>
+    </Column>
     <Column
       class="max-w-10"
       field="status"

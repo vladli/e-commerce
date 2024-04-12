@@ -1,3 +1,20 @@
+export const categories = ref([
+  {
+    name: 'PC',
+    code: 'PC',
+    subCategory: [
+      {
+        name: 'Components',
+        items: [
+          { cname: 'CPU', code: 'cpu' },
+          { cname: 'Motherboard', code: 'motherboard' },
+          { cname: 'GPU', code: 'gpu' }
+        ]
+      }
+    ]
+  }
+]);
+
 type MenuItem = {
   name: string;
   path?: string;
@@ -32,22 +49,24 @@ export const mainMenu: MenuItem[] = [
         path: '/admin/products/dashboard'
       }
     ]
+  },
+  {
+    name: 'Categories',
+    icon: '',
+    children: categories.value.map((category) => ({
+      name: category.name,
+      icon: '',
+      path: `/admin/categories/${category.code}`,
+      children: category.subCategory.map((subCategory) => ({
+        name: subCategory.name,
+        icon: '',
+        path: `/admin/categories/${category.code}/${subCategory.name}`,
+        children: subCategory.items.map((item) => ({
+          name: item.cname,
+          icon: '',
+          path: `/admin/categories/${category.code}/${subCategory.name}/${item.cname}`
+        }))
+      }))
+    }))
   }
 ];
-
-export const categories = ref([
-  {
-    name: 'PC',
-    code: 'PC',
-    subCategory: [
-      {
-        name: 'Components',
-        items: [
-          { cname: 'CPU', code: 'cpu' },
-          { cname: 'Motherboard', code: 'motherboard' },
-          { cname: 'GPU', code: 'gpu' }
-        ]
-      }
-    ]
-  }
-]);

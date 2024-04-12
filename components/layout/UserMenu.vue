@@ -1,12 +1,6 @@
 <script setup lang="ts">
-import type { MenuItem } from "primevue/menuitem";
 
-const {
-  status,
-  data,
-
-  signOut,
-} = useAuth();
+const { data, signOut } = useAuth();
 const model = defineModel<any>("menu");
 const items = ref<any>([
   {
