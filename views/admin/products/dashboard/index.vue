@@ -17,6 +17,11 @@ const removeProduct = (productInfo: any) => {
     striped-rows
     :value="products"
   >
+    <template #empty>
+      <div class="text-center font-bold">
+        No data
+      </div>
+    </template>
     <template #header>
       <div class="flex items-center justify-between">
         <div>
@@ -48,6 +53,11 @@ const removeProduct = (productInfo: any) => {
         {{ slotProps.data.price }}
       </template>
     </Column>
+    <Column
+      field="category"
+      header="Category"
+      sortable
+    />
     <Column
       class="max-w-10"
       field="status"

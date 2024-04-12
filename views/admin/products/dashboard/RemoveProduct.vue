@@ -49,7 +49,9 @@ const removeProduct = async () => {
     :style="{ width: '50rem' }"
   >
     <div>
-      <h3 class="mb-3">Do you want to remove this product?</h3>
+      <h3 class="mb-3">
+        Do you want to remove this product?
+      </h3>
       <p
         v-for="(value, key) in productInfo"
         :key="key"

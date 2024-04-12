@@ -9,6 +9,8 @@ const props = defineProps({
 const visible = defineModel<boolean>('visible');
 const productName = ref('');
 const productPrice = ref(0);
+const selectedCategory = ref();
+
 const loading = ref(false);
 
 async function addProduct() {
@@ -16,11 +18,11 @@ async function addProduct() {
     method: 'POST',
     body: {
       name: productName.value,
-      price: productPrice.value
+      price: productPrice.value,
+      category: selectedCategory.value.code
     },
     onRequest() {
       loading.value = true;
-      console.log(1);
     },
     onResponse() {
       toast.success('Product added successfully!');
@@ -43,7 +45,7 @@ async function addProduct() {
     <template #header>
       <h2>Add Product</h2>
     </template>
-    <form class="mt-10 flex flex-col gap-2">
+    <form class="mx-auto mt-10 flex w-1/2 flex-col gap-2">
       <InputText
         v-model="productName"
         placeholder="Product name"
@@ -54,6 +56,15 @@ async function addProduct() {
         locale="en-US"
         mode="currency"
         placeholder="Product price"
+      />
+      <CascadeSelect
+        v-model="selectedCategory"
+        class="w-fit"
+        :option-group-children="['subCategory', 'items']"
+        option-group-label="name"
+        option-label="cname"
+        :options="categories"
+        placeholder="Select a category"
       />
     </form>
     <template #footer>
