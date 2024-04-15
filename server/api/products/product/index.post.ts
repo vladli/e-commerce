@@ -8,7 +8,9 @@ export default defineEventHandler(async (event) => {
       userId: userId,
       name: data.name,
       price: data.price,
-      category: data.category
+      category: data.category,
+      image: data.image,
+      inventory: data.inventory
     }
   });
 });

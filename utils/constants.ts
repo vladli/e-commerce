@@ -25,27 +25,27 @@ type MenuItem = {
 export const mainMenu: MenuItem[] = [
   {
     name: 'Main Menu',
-    icon: '',
+    icon: 'material-symbols:dashboard',
     children: [
       {
         name: 'Home',
         path: '/',
-        icon: 'material-symbols:dashboard'
+        icon: ''
       },
       {
         name: 'About',
         path: '/about',
-        icon: 'material-symbols:info'
+        icon: ''
       }
     ]
   },
   {
     name: 'Admin Menu',
-    icon: '',
+    icon: 'eos-icons:admin-outlined',
     children: [
       {
         name: 'All Products',
-        icon: 'fluent-mdl2:product',
+        icon: '',
         path: '/admin/products/dashboard'
       }
     ]

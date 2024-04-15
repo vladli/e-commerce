@@ -25,7 +25,8 @@ defineProps({
         }"
         class="flex cursor-pointer items-center justify-between rounded-md p-3 text-surface-700 transition-colors duration-200 hover:bg-surface-100 dark:text-surface-0/80 dark:hover:bg-surface-700"
       >
-        <span class="font-medium">{{ child.name }}</span>
+        <Icon :name="child.icon" />
+        <span class="ml-2 grow font-medium">{{ child.name }}</span>
         <Icon name="ion:chevron-down" />
       </div>
       <template v-if="child.children">
@@ -37,6 +38,10 @@ defineProps({
             class="flex cursor-pointer items-center rounded-md p-3 text-surface-700 transition-colors duration-200 hover:bg-surface-100 dark:text-surface-0/80 dark:hover:bg-surface-700"
             :to="child.path"
           >
+            <Icon
+              class="mr-2"
+              name="codicon:circle"
+            />
             {{ child.name }}
           </NuxtLink>
         </div>

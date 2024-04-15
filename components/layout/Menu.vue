@@ -18,7 +18,8 @@
           }"
           class="flex cursor-pointer items-center justify-between rounded-md p-3 text-surface-600 dark:text-surface-400"
         >
-          <span class="font-medium">{{ item.name }}</span>
+          <Icon :name="item.icon" />
+          <span class="ml-2 grow font-medium">{{ item.name }}</span>
           <Icon name="ion:chevron-down" />
         </div>
         <LayoutMenuItem

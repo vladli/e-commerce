@@ -9,6 +9,7 @@ const props = defineProps({
 const visible = defineModel<boolean>('visible');
 const productName = ref('');
 const productPrice = ref(0);
+const imageLink = ref('');
 const selectedCategory = ref();
 
 const loading = ref(false);
@@ -19,7 +20,8 @@ async function addProduct() {
     body: {
       name: productName.value,
       price: productPrice.value,
-      category: selectedCategory.value.code
+      category: selectedCategory.value.code,
+      image: imageLink.value
     },
     onRequest() {
       loading.value = true;
@@ -56,6 +58,10 @@ async function addProduct() {
         locale="en-US"
         mode="currency"
         placeholder="Product price"
+      />
+      <InputText
+        v-model="imageLink"
+        placeholder="Image Link"
       />
       <CascadeSelect
         v-model="selectedCategory"

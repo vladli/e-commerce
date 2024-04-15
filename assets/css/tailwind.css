@@ -1,4 +1,4 @@
-@import "@steveyuowo/vue-hot-toast/vue-hot-toast.css";
+@import '@steveyuowo/vue-hot-toast/vue-hot-toast.css';
 
 @layer tailwind-base {
   @tailwind base;
@@ -21,11 +21,11 @@
   }
 }
 :root {
-  font-family: "Inter var", sans-serif;
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  font-family: 'Inter var', sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   font-variation-settings: normal;
-  --font-family: "Inter var", sans-serif;
-  --font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  --font-family: 'Inter var', sans-serif;
+  --font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
 
   --primary-50: 236 253 245;
   --primary-100: 209 250 229;
@@ -61,7 +61,7 @@
   --border-color: rgb(var(--surface-200));
 }
 
-:root[class="dark"] {
+:root[class='dark'] {
   --body-bg: rgb(var(--surface-800));
   --body-text-color: rgb(var(--surface-50));
   --card-border: 1px solid transparent;
@@ -163,6 +163,6 @@ body {
   animation: slideup 0.45s cubic-bezier(0, 1, 0, 1);
 }
 
-.layout-ripple-disabled [data-pc-name="ripple"] {
+.layout-ripple-disabled [data-pc-name='ripple'] {
   display: none !important;
 }

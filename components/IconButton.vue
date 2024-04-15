@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { ButtonProps } from 'primevue/button'
+import type { ButtonProps } from 'primevue/button';
 
 interface MyInputProps extends /* @vue-ignore */ ButtonProps {
-  iconName: string
+  iconName: string;
 }
 
-defineProps<MyInputProps>()
+defineProps<MyInputProps>();
 </script>
 
 <template>
-  <Button class="gap-2 !p-2">
+  <Button class="flex-none gap-2 !p-2">
     <Icon :name="iconName" />
     <slot />
   </Button>

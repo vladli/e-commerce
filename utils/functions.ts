@@ -1,3 +1,5 @@
+import type { Products } from '@prisma/client';
+
 export function getCnameByCode(code: string) {
   const category = categories.value.find((category) => {
     const subCategory = category.subCategory.find((sub) => {
@@ -16,6 +18,11 @@ export function getCnameByCode(code: string) {
       return item?.cname;
     }
   }
-
   return null;
+}
+
+export function isInStock(item: Products) {
+  return item.inventory !== null && item.inventory > 0
+    ? 'IN STOCK'
+    : 'OUT OF STOCK';
 }

@@ -18,9 +18,7 @@ const removeProduct = (productInfo: any) => {
     :value="products"
   >
     <template #empty>
-      <div class="text-center font-bold">
-        No data
-      </div>
+      <div class="text-center font-bold">No data</div>
     </template>
     <template #header>
       <div class="flex items-center justify-between">
@@ -40,10 +38,32 @@ const removeProduct = (productInfo: any) => {
       </div>
     </template>
     <Column
+      class="max-w-28"
+      header="Stock"
+    >
+      <template #body="slotProps">
+        <Tag
+          :severity="
+            isInStock(slotProps.data) == 'IN STOCK' ? 'success' : 'danger'
+          "
+          :value="isInStock(slotProps.data)"
+        />
+      </template>
+    </Column>
+    <Column
       field="name"
       header="Name"
       sortable
     />
+    <Column header="Image">
+      <template #body="slotProps">
+        <NuxtImg
+          :alt="slotProps.data.image"
+          class="w-20 rounded shadow-md"
+          :src="slotProps.data.image"
+        />
+      </template>
+    </Column>
     <Column
       field="price"
       header="Price"
@@ -63,9 +83,9 @@ const removeProduct = (productInfo: any) => {
       </template>
     </Column>
     <Column
-      class="max-w-10"
+      class="max-w-24"
       field="status"
-      header="Status"
+      header="Actions"
     >
       <template #body="slotProps">
         <div class="flex justify-center gap-2">

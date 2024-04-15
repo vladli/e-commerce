@@ -10,10 +10,13 @@ module.exports = {
     parser: '@typescript-eslint/parser'
   },
   rules: {
-    'comma-spacing': ['error', { before: false, after: true }],
-    'object-curly-spacing': ['error', 'always'],
-    'no-multi-spaces': ['error', { ignoreEOLComments: true }],
-    'space-infix-ops': ['error', { int32Hint: false }],
+    'tailwindcss/no-custom-classname': [
+      'warn',
+      {
+        whitelist: ['pi-.*']
+      }
+    ],
+    'vue/html-self-closing': 'off',
     'vue/multi-word-component-names': ['off'],
     'vue/html-closing-bracket-newline': [
       'error',
@@ -23,15 +26,7 @@ module.exports = {
       }
     ],
     'vue/singleline-html-element-content-newline': ['off'],
-    'vue/script-indent': [
-      'error',
-      2,
-      {
-        baseIndent: 0,
-        switchCase: 0,
-        ignores: []
-      }
-    ],
+    'vue/script-indent': ['off'],
     'vue/attributes-order': [
       'error',
       {
