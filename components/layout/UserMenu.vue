@@ -1,21 +1,20 @@
 <script setup lang="ts">
-
 const { data, signOut } = useAuth();
-const model = defineModel<any>("menu");
+const model = defineModel<any>('menu');
 const items = ref<any>([
   {
-    separator: true,
+    separator: true
   },
   {
-    label: "Profile",
-    icon: "uil:signout",
-    url: "/profile",
+    label: 'Profile',
+    icon: 'iconamoon:profile',
+    url: '/profile'
   },
   {
-    label: "Sign Out",
-    icon: "uil:signout",
-    command: signOut,
-  },
+    label: 'Sign Out',
+    icon: 'uil:signout',
+    command: signOut
+  }
 ]);
 </script>
 
@@ -29,8 +28,7 @@ const items = ref<any>([
     >
       <template #start>
         <div
-          v-ripple
-          class="p-link relative flex w-full items-center overflow-hidden rounded-none p-2 pl-3 text-surface-700 hover:bg-surface-200 dark:text-surface-0/80 dark:hover:bg-surface-600"
+          class="relative flex w-full items-center overflow-hidden rounded-none p-2 pl-3 text-surface-700 dark:text-surface-0/80"
         >
           <Avatar
             class="mr-2"
@@ -38,8 +36,10 @@ const items = ref<any>([
             shape="circle"
           />
           <span class="inline-flex flex-col justify-start">
-            <span class="font-bold">{{ data?.user?.name || data?.user?.email }}</span>
-            <span class="text-sm">Admin</span>
+            <span class="font-bold">
+              {{ data?.user?.name || data?.user?.email }}
+            </span>
+            <span class="text-sm capitalize">{{ data?.user?.role }}</span>
           </span>
         </div>
       </template>

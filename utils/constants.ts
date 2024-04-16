@@ -1,3 +1,5 @@
+import type { Role } from '~/nextauth';
+
 export const categories = ref([
   {
     name: 'PC',
@@ -19,6 +21,7 @@ type MenuItem = {
   name: string;
   path?: string;
   icon: string;
+  roles?: string[] | undefined;
   children?: MenuItem[];
 };
 
@@ -42,11 +45,17 @@ export const mainMenu: MenuItem[] = [
   {
     name: 'Admin Menu',
     icon: 'eos-icons:admin-outlined',
+    roles: ['admin'],
     children: [
       {
         name: 'All Products',
         icon: '',
         path: '/admin/products/dashboard'
+      },
+      {
+        name: 'All Users',
+        icon: '',
+        path: '/admin/users'
       }
     ]
   }

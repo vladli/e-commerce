@@ -8,13 +8,10 @@ const layout = ref<DataViewProps['layout']>('grid');
 const getSeverity = (item: any) => {
   return item.inventory >= 10 ? 'success' : 'danger';
 };
-const inventoryStatus = (item: any) => {
-  return item.inventory >= 10 ? 'IN STOCK' : 'OUT OF STOCK';
-};
 </script>
 
 <template>
-  <UIBox>
+  <UIPage>
     <DataView
       :data-key="data.id"
       :layout="layout"
@@ -44,5 +41,5 @@ const inventoryStatus = (item: any) => {
         />
       </template>
     </DataView>
-  </UIBox>
+  </UIPage>
 </template>

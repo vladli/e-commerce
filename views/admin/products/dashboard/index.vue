@@ -79,7 +79,7 @@ const removeProduct = (productInfo: any) => {
       sortable
     >
       <template #body="slotProps">
-        {{ getCnameByCode(slotProps.data.category) }}
+        {{ getCnameByCode(slotProps.data.category) || slotProps.data.category }}
       </template>
     </Column>
     <Column
