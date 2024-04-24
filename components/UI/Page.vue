@@ -10,7 +10,7 @@ defineProps({
 
 <template>
   <div
-    class="z-10 flex flex-col gap-y-2 rounded-md bg-[var(--page-bg)] p-2 text-surface-700 shadow-md dark:text-surface-0"
+    class="z-10 flex flex-col gap-y-2 rounded-md bg-[var(--page-bg)] p-2 text-surface-700 shadow-sm dark:text-surface-0"
   >
     <h2
       v-if="title"

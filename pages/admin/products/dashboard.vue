@@ -2,6 +2,9 @@
 definePageMeta({
   middleware: 'admin'
 });
+useHead({
+  title: 'Products'
+});
 </script>
 
 <template>

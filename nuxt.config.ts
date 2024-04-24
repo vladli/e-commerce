@@ -5,7 +5,8 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
-      title: 'My Nuxt App'
+      title: 'E-commerce | vladli.dev',
+      titleTemplate: '%s | E-commerce'
     }
   },
   css: ['~/assets/css/tailwind.css', '/node_modules/primeicons/primeicons.css'],

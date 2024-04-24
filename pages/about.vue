@@ -1,3 +1,8 @@
+<script setup lang="ts">
+useHead({
+  title: 'About Page'
+});
+</script>
 <template>
-  <UIPage>About Page</UIPage>
+  <UIPage title="About Page">About Page</UIPage>
 </template>

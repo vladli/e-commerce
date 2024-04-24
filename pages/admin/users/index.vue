@@ -3,6 +3,9 @@ const { data } = useFetch('/api/admin/users');
 definePageMeta({
   middleware: 'admin'
 });
+useHead({
+  title: 'Users'
+});
 </script>
 
 <template>

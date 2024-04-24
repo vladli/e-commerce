@@ -4,9 +4,9 @@ const topHeader = ref(false);
 
 const handleScroll = () => {
   if (window.scrollY > 0) {
-    topHeader.value = false;
-  } else {
     topHeader.value = true;
+  } else {
+    topHeader.value = false;
   }
 };
 onBeforeMount(() => {
@@ -17,7 +17,7 @@ onBeforeMount(() => {
 <template>
   <header
     class="fixed left-0 top-0 z-50 flex h-20 w-full px-4 text-surface-700 dark:text-surface-0"
-    :class="{ scrolled: !topHeader }"
+    :class="{ scrolled: topHeader }"
   >
     <div class="flex grow items-center">
       <Logo />
