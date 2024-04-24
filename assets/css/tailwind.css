@@ -59,26 +59,56 @@
   --card-border: 1px solid var(--border-color);
   --card-bg: rgb(var(--surface-0));
   --border-color: rgb(var(--surface-200));
+  --page-bg: rgb(var(--surface-0));
+  --glow-img: url('/bg.png'),
+    radial-gradient(
+      50% 50% at center top,
+      rgb(var(--primary-100)) 0%,
+      #fff 100%
+    );
+  --glow-mode: hard-light, multiply;
 }
 
 :root[class='dark'] {
-  --body-bg: rgb(var(--surface-800));
-  --body-text-color: rgb(var(--surface-50));
+  --body-bg: rgb(var(--surface-900));
+  --body-text-color: (var(--surface-50));
   --card-border: 1px solid transparent;
-  --card-bg: rgb(var(--surface-300));
+  --card-bg: rgb(var(--surface-900));
   --border-color: rgba(255, 255, 255, 0.1);
+  --page-bg: rgb(var(--surface-800));
+  --glow-img: url(/bg.png),
+    radial-gradient(
+      50% 50% at center -25px,
+      rgb(var(--primary-500)) 0%,
+      #000 100%
+    );
+  --glow-mode: hard-light, color-dodge;
+}
+
+header.scrolled {
+  background-color: var(--body-bg);
 }
 
 body {
-  margin: 0px;
+  margin: 0;
   min-height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
   background-color: var(--body-bg);
   font-weight: normal;
   color: var(--body-text-color);
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.layout {
+  background-color: var(--body-bg);
+  background-blend-mode: var(--glow-mode);
+  background-image: var(--glow-img);
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: auto 20rem;
 }
 
 .VueHotToast__toast {
@@ -86,13 +116,13 @@ body {
   color: var(--body-text-color);
 }
 
-/* [data-pc-name="card"] {
+.card {
   background: var(--card-bg);
   border: var(--card-border);
   padding: 2rem;
   border-radius: 10px;
   margin-bottom: 1rem;
-} */
+}
 
 @keyframes fadein {
   0% {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DataViewProps } from 'primevue/dataview';
 
-const { data }: any = useFetch('/api/products');
+const { data } = useFetch('/api/products');
 
 const layout = ref<DataViewProps['layout']>('grid');
 
@@ -13,7 +13,7 @@ const getSeverity = (item: any) => {
 <template>
   <UIPage>
     <DataView
-      :data-key="data.id"
+      data-key="1"
       :layout="layout"
       paginator
       :pt="{
@@ -21,7 +21,7 @@ const getSeverity = (item: any) => {
         header: 'p-4'
       }"
       :rows="6"
-      :value="data"
+      :value="data as any[]"
     >
       <template #header>
         <div class="flex justify-end">

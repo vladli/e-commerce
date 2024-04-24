@@ -42,12 +42,15 @@ const removeProduct = (productInfo: any) => {
       header="Stock"
     >
       <template #body="slotProps">
-        <Tag
-          :severity="
-            isInStock(slotProps.data) == 'IN STOCK' ? 'success' : 'danger'
-          "
-          :value="isInStock(slotProps.data)"
-        />
+        <div class="flex flex-col items-center gap-y-1">
+          <Tag
+            :severity="
+              isInStock(slotProps.data) == 'IN STOCK' ? 'success' : 'danger'
+            "
+            :value="isInStock(slotProps.data)"
+          />
+          {{ slotProps.data.inventory || 0 }}
+        </div>
       </template>
     </Column>
     <Column

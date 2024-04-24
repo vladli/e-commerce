@@ -7,14 +7,13 @@ defineProps<{
 
 <template>
   <div class="flex flex-wrap">
-    <div
+    <NuxtLink
       v-for="(item, index) in items"
       :key="index"
       class="w-full p-3 sm:w-6/12 xl:w-4/12"
+      :to="`/product/${item.id}`"
     >
-      <div
-        class="rounded border border-surface-200 bg-surface-0 p-4 dark:border-surface-700 dark:bg-surface-800"
-      >
+      <div class="card rounded p-4">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <div class="flex items-center gap-2">
             <i class="pi pi-tag" />
@@ -46,6 +45,6 @@ defineProps<{
           />
         </div>
       </div>
-    </div>
+    </NuxtLink>
   </div>
 </template>

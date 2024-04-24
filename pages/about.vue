@@ -1,3 +1,3 @@
 <template>
-  <UIBox>About Page</UIBox>
+  <UIPage>About Page</UIPage>
 </template>

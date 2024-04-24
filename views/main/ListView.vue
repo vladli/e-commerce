@@ -27,11 +27,12 @@ defineProps<{
           class="flex flex-1 flex-col items-center justify-between gap-4 sm:flex-row xl:items-start"
         >
           <div class="flex flex-col items-center gap-3 sm:items-start">
-            <div
+            <NuxtLink
               class="text-2xl font-bold text-surface-900 dark:text-surface-0"
+              :to="`/product/${item.id}`"
             >
               {{ item.name }}
-            </div>
+            </NuxtLink>
 
             <div class="flex items-center gap-3">
               <span class="flex items-center gap-2">

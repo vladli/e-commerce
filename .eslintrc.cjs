@@ -16,6 +16,7 @@ module.exports = {
         whitelist: ['pi-.*']
       }
     ],
+    'vue/html-indent': ['off'],
     'vue/html-self-closing': 'off',
     'vue/multi-word-component-names': ['off'],
     'vue/html-closing-bracket-newline': [

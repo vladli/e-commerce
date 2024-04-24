@@ -2,21 +2,24 @@
 defineProps({
   title: {
     type: String,
-    required: false
+    required: false,
+    default: ''
   }
 });
 </script>
 
 <template>
   <div
-    class="rounded-md bg-surface-0 p-2 text-surface-700 shadow-md dark:bg-surface-900 dark:text-surface-0 flex flex-col gap-y-2"
+    class="z-10 flex flex-col gap-y-2 rounded-md bg-[var(--page-bg)] p-2 text-surface-700 shadow-md dark:text-surface-0"
   >
     <h2
-      class="text-center"
       v-if="title"
+      class="text-center"
     >
       {{ title }}
     </h2>
-    <slot />
+    <div>
+      <slot />
+    </div>
   </div>
 </template>

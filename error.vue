@@ -1,3 +1,16 @@
+<script setup lang="ts">
+import type { NuxtError } from '#app';
+
+defineProps({
+  error: {
+    type: Object as () => NuxtError,
+    default: () => ({})
+  }
+});
+
+const handleError = () => clearError({ redirect: '/' });
+</script>
+
 <template>
   <div
     class="flex h-dvh w-full items-center justify-center overflow-hidden bg-surface-0 dark:bg-surface-900"
@@ -18,18 +31,18 @@
           class="flex w-full flex-col items-center bg-surface-100 px-5 py-8 dark:bg-surface-800 sm:px-8"
           style="border-radius: 53px"
         >
-          <span class="text-3xl font-bold text-blue-500">404</span>
+          <span class="text-3xl font-bold text-blue-500">
+            {{ error.statusCode }}
+          </span>
           <h1
             class="mb-2 text-3xl font-bold text-surface-700 dark:text-surface-0 lg:text-5xl"
           >
             Not Found
           </h1>
           <div class="mb-5 text-surface-700 dark:text-surface-0">
-            Requested resource is not available.
+            {{ error.statusMessage }}
           </div>
-          <NuxtLink to="/">
-            <Button>Back to home</Button>
-          </NuxtLink>
+          <Button @click="handleError">Back to home</Button>
         </div>
       </div>
     </div>
