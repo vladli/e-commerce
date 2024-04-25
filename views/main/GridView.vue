@@ -38,11 +38,7 @@ defineProps<{
         </div>
         <div class="flex items-center justify-between">
           <span class="text-2xl font-semibold">${{ item.price }}</span>
-          <Button
-            :disabled="isInStock(item) === 'OUT OF STOCK'"
-            icon="pi pi-shopping-cart"
-            rounded
-          />
+          <CartAddButton :item="item" />
         </div>
       </div>
     </NuxtLink>

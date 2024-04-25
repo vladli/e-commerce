@@ -17,7 +17,8 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@nuxtjs/color-mode',
     '@sidebase/nuxt-auth',
-    'nuxt-security'
+    'nuxt-security',
+    '@pinia/nuxt'
   ],
   components: [{ path: '~/views', pathPrefix: true }, '~/components'],
 

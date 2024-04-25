@@ -19,7 +19,6 @@ const toggle = (event) => {
       class="cursor-pointer"
       :image="data?.user?.image || ''"
       shape="circle"
-      size="large"
       @click="toggle"
     />
     <LayoutUserMenu v-model:menu="menu" />

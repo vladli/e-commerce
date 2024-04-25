@@ -9,7 +9,7 @@ useHead({
 </script>
 
 <template>
-  <UIPage title="Users">
+  <Page title="Users">
     <DataTable :value="data">
       <Column
         field="name"
@@ -32,5 +32,5 @@ useHead({
         sortable
       />
     </DataTable>
-  </UIPage>
+  </Page>
 </template>

@@ -5,10 +5,7 @@ module.exports = {
     'plugin:tailwindcss/recommended',
     'plugin:vue/vue3-recommended'
   ],
-  parser: 'vue-eslint-parser',
-  parserOptions: {
-    parser: '@typescript-eslint/parser'
-  },
+
   rules: {
     'tailwindcss/no-custom-classname': [
       'warn',

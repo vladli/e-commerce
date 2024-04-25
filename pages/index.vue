@@ -11,7 +11,7 @@ const getSeverity = (item: any) => {
 </script>
 
 <template>
-  <UIPage>
+  <Page>
     <DataView
       data-key="1"
       :layout="layout"
@@ -41,5 +41,5 @@ const getSeverity = (item: any) => {
         />
       </template>
     </DataView>
-  </UIPage>
+  </Page>
 </template>

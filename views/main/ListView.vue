@@ -12,11 +12,9 @@ defineProps<{
       :key="index"
       class="w-full p-3"
     >
-      <div
-        class="flex flex-col gap-4 p-4 xl:flex-row xl:items-start"
-        :class="{
-          'border-t border-surface-200 dark:border-surface-700': index !== 0
-        }"
+      <NuxtLink
+        class="card flex flex-col gap-4 p-4 xl:flex-row xl:items-start"
+        :to="`/product/${item.id}`"
       >
         <NuxtImg
           :alt="item.name"
@@ -27,12 +25,11 @@ defineProps<{
           class="flex flex-1 flex-col items-center justify-between gap-4 sm:flex-row xl:items-start"
         >
           <div class="flex flex-col items-center gap-3 sm:items-start">
-            <NuxtLink
+            <div
               class="text-2xl font-bold text-surface-900 dark:text-surface-0"
-              :to="`/product/${item.id}`"
             >
               {{ item.name }}
-            </NuxtLink>
+            </div>
 
             <div class="flex items-center gap-3">
               <span class="flex items-center gap-2">
@@ -51,14 +48,10 @@ defineProps<{
             class="flex items-center gap-3 sm:flex-col sm:items-end sm:gap-2"
           >
             <span class="text-2xl font-semibold">${{ item.price }}</span>
-            <Button
-              :disabled="isInStock(item) === 'OUT OF STOCK'"
-              icon="pi pi-shopping-cart"
-              rounded
-            ></Button>
+            <CartAddButton :item="item" />
           </div>
         </div>
-      </div>
+      </NuxtLink>
     </div>
   </div>
 </template>

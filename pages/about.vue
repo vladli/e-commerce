@@ -4,5 +4,5 @@ useHead({
 });
 </script>
 <template>
-  <UIPage title="About Page">About Page</UIPage>
+  <Page title="About Page">About Page</Page>
 </template>

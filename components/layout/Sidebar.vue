@@ -1,5 +1,5 @@
 <template>
-  <UIBox class="hidden lg:block">
+  <Box class="hidden lg:block">
     <LayoutMenu />
-  </UIBox>
+  </Box>
 </template>

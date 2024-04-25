@@ -16,7 +16,7 @@ if (error.value) {
 </script>
 
 <template>
-  <UIPage
+  <Page
     class="flex flex-col items-center"
     :title="data?.name"
   >
@@ -27,5 +27,5 @@ if (error.value) {
       :src="data?.image || ''"
       width="250"
     />
-  </UIPage>
+  </Page>
 </template>

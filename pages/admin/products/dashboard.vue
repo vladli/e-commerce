@@ -8,7 +8,7 @@ useHead({
 </script>
 
 <template>
-  <UIPage title="Products">
+  <Page title="Products">
     <AdminProductsDashboard />
-  </UIPage>
+  </Page>
 </template>

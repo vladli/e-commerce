@@ -2,7 +2,7 @@
 const colorMode = useColorMode();
 
 function toggleTheme() {
-  colorMode.preference = colorMode.value === "light" ? "dark" : "light";
+  colorMode.preference = colorMode.value === 'light' ? 'dark' : 'light';
 }
 </script>
 
@@ -20,4 +20,3 @@ function toggleTheme() {
     />
   </Button>
 </template>
-Button
