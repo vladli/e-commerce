@@ -32,8 +32,9 @@ const menu = computed(() => [
         v-if="storeId"
         :model="menu"
         :pt="{
-          root: 'rounded-none bg-transparent dark:bg-transparent',
-          content: 'rounded-none'
+          root: 'rounded-none bg-transparent dark:bg-transparent h-20 px-4',
+          menu: 'bg-transparent dark:bg-transparent',
+          content: 'rounded-none '
         }"
         :pt-options="{ mergeProps: true }"
       >
@@ -44,7 +45,7 @@ const menu = computed(() => [
           <NuxtLink
             v-ripple
             v-bind="props.action"
-            active-class="bg-primary-500 "
+            active-class="bg-primary-500 text-surface-100"
             class="flex items-center"
             :to="item.route"
           >
@@ -54,6 +55,7 @@ const menu = computed(() => [
         </template>
         <template #end>
           <div class="flex items-center gap-2">
+            <LayoutThemeSwitcher />
             <LayoutAuthButton />
           </div>
         </template>

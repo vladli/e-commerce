@@ -1,7 +1,11 @@
 <script setup lang="ts">
 const visible = ref(false);
 const topHeader = ref(false);
+const {
+  status,
 
+  signIn
+} = useAuth();
 const handleScroll = () => {
   if (window.scrollY > 0) {
     topHeader.value = true;
@@ -36,6 +40,13 @@ onBeforeMount(() => {
       <CartButton />
       <LayoutThemeSwitcher />
       <LayoutAuthButton class="hidden lg:block" />
+      <Button
+        v-if="status !== 'authenticated'"
+        class="lg:hidden"
+        @click="signIn('google')"
+      >
+        Log In
+      </Button>
     </div>
   </header>
 </template>

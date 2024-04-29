@@ -44,7 +44,7 @@ export const mainMenu: MenuItem[] = [
         icon: ''
       },
       {
-        roles: ['admin'],
+        roles: ['user'],
         name: 'My Stores',
         path: '/stores',
         icon: ''

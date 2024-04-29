@@ -1,11 +1,16 @@
 <script setup lang="ts">
 const route = useRoute();
-const { data } = await useFetch(`/api/stores/billboard/:storeId`, {
+const { data, error } = await useFetch(`/api/stores/billboard/:storeId`, {
   query: {
     storeId: route.params.storeId
   }
 });
-
+if (error.value) {
+  showError({
+    statusCode: error.value.statusCode,
+    statusMessage: error.value.statusMessage
+  });
+}
 definePageMeta({
   layout: 'dashboard'
 });
@@ -13,6 +18,32 @@ definePageMeta({
 
 <template>
   <Page title="Billboards">
-    <h3>{{ data }}</h3>
+    <DataTable :value="data">
+      <template #header>
+        <StoresCreateBillboard />
+      </template>
+      <Column
+        field="label"
+        header="Label"
+      ></Column>
+      <Column header="Image">
+        <template #body="slotProps">
+          <img
+            :alt="slotProps.data.image"
+            class="w-24 rounded shadow-md"
+            :src="`https://primefaces.org/cdn/primevue/images/product/${slotProps.data.image}`"
+          />
+        </template>
+      </Column>
+
+      <Column
+        field="createdAt"
+        header="Created At"
+      ></Column>
+
+      <template #footer>
+        In total there are {{ data ? data.length : 0 }} billboards.
+      </template>
+    </DataTable>
   </Page>
 </template>

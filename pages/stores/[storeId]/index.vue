@@ -1,11 +1,17 @@
 <script setup lang="ts">
 const route = useRoute();
 
-const { data } = await useFetch(`/api/stores/store/:storeId`, {
+const { data, error } = await useFetch(`/api/stores/store/:storeId`, {
   query: {
     storeId: route.params.storeId
   }
 });
+if (error.value) {
+  showError({
+    statusCode: error.value.statusCode,
+    statusMessage: error.value.statusMessage
+  });
+}
 
 definePageMeta({
   layout: 'dashboard'

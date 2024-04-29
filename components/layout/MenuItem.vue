@@ -36,8 +36,7 @@ const { data } = useAuth();
       <template v-else>
         <div
           v-if="
-            !child.roles?.length ||
-            child.roles.includes(data?.user?.role as string)
+            !child.roles?.length || (child.roles.includes('user') && data?.user)
           "
           :key="child.name"
           class="my-1"

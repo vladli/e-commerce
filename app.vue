@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Toaster } from '@steveyuowo/vue-hot-toast'
+import { Toaster } from '@steveyuowo/vue-hot-toast';
 </script>
 
 <template>
