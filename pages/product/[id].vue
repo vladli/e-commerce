@@ -20,12 +20,12 @@ if (error.value) {
     class="flex flex-col items-center"
     :title="data?.name"
   >
-    <Image
+    <Img
       alt="Product image"
       image-class="rounded-md"
       preview
-      :src="data?.image || ''"
-      width="250"
+      :src="data?.images?.[0] || ''"
+      width="200"
     />
   </Page>
 </template>

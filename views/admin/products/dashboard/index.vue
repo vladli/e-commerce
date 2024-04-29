@@ -60,10 +60,11 @@ const removeProduct = (productInfo: any) => {
     />
     <Column header="Image">
       <template #body="slotProps">
-        <NuxtImg
-          :alt="slotProps.data.image"
+        <Img
+          :alt="slotProps.data?.images?.[0]"
           class="w-20 rounded shadow-md"
-          :src="slotProps.data.image"
+          preview
+          :src="slotProps.data?.images?.[0]"
         />
       </template>
     </Column>

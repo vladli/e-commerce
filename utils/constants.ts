@@ -1,5 +1,3 @@
-import type { Role } from '~/nextauth';
-
 export const categories = ref([
   {
     name: 'PC',
@@ -12,6 +10,16 @@ export const categories = ref([
           { cname: 'Motherboard', code: 'motherboard' },
           { cname: 'GPU', code: 'gpu' }
         ]
+      }
+    ]
+  },
+  {
+    name: 'Shoes',
+    code: 'shoes',
+    subCategory: [
+      {
+        name: 'Man Shoes',
+        items: [{ cname: 'Sneakers', code: 'sneakersMan' }]
       }
     ]
   }
@@ -36,12 +44,19 @@ export const mainMenu: MenuItem[] = [
         icon: ''
       },
       {
+        roles: ['admin'],
+        name: 'My Stores',
+        path: '/stores',
+        icon: ''
+      },
+      {
         name: 'About',
         path: '/about',
         icon: ''
       }
     ]
   },
+
   {
     name: 'Admin Menu',
     icon: 'eos-icons:admin-outlined',

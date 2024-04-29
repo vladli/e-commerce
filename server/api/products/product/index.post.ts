@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
       name: data.name,
       price: data.price,
       category: data.category,
-      image: data.image,
+      images: data.images,
       inventory: data.inventory
     }
   });

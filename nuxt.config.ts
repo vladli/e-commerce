@@ -17,11 +17,21 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@nuxtjs/color-mode',
     '@sidebase/nuxt-auth',
-    'nuxt-security',
-    '@pinia/nuxt'
+    // 'nuxt-security',
+    '@pinia/nuxt',
+    '@nuxtjs/cloudinary'
   ],
+  image: {
+    cloudinary: {
+      baseURL: `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/`
+    }
+  },
+  cloudinary: {
+    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+    uploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET,
+    apiKey: process.env.CLOUDINARY_API_KEY
+  },
   components: [{ path: '~/views', pathPrefix: true }, '~/components'],
-
   colorMode: {
     classSuffix: ''
   },
@@ -45,14 +55,14 @@ export default defineNuxtConfig({
     provider: {
       type: 'authjs'
     }
-  },
-  security: {
-    headers: {
-      crossOriginEmbedderPolicy: false,
-      contentSecurityPolicy: {
-        'img-src': false,
-        'script-src': false
-      }
-    }
   }
+  // security: {
+  //   headers: {
+  //     crossOriginEmbedderPolicy: false,
+  //     contentSecurityPolicy: {
+  //       'img-src': false,
+  //       'script-src': false
+  //     }
+  //   }
+  // }
 });

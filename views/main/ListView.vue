@@ -16,10 +16,10 @@ defineProps<{
         class="card flex flex-col gap-4 p-4 xl:flex-row xl:items-start"
         :to="`/product/${item.id}`"
       >
-        <NuxtImg
+        <Img
           :alt="item.name"
-          class="mx-auto block w-9/12 rounded shadow-md sm:w-64 xl:block xl:w-40"
-          :src="item.image"
+          class="mx-auto block rounded shadow-md sm:w-64 xl:block xl:w-40"
+          :src="item.images?.[0]"
         />
         <div
           class="flex flex-1 flex-col items-center justify-between gap-4 sm:flex-row xl:items-start"

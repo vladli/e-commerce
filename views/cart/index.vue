@@ -53,11 +53,11 @@ const totalPrice = computed(() => {
             class="odd:bg-surface-100 even:bg-white odd:dark:bg-surface-900 even:dark:bg-surface-800"
           >
             <td class="px-6 py-4">
-              <Image
+              <Img
                 :alt="item.name"
                 image-class="rounded-md"
                 preview
-                :src="item.image || ''"
+                :src="item.images[0] || ''"
                 width="100"
               />
             </td>

@@ -27,10 +27,11 @@ defineProps<{
           />
         </div>
         <div class="flex flex-col items-center gap-3 py-5">
-          <NuxtImg
+          <Img
             :alt="item.name"
-            class="w-9/12 rounded shadow-md"
-            :src="item.image"
+            class="rounded shadow-md"
+            :src="item.images?.[0]"
+            width="200"
           />
           <div class="text-2xl font-bold">
             {{ item.name }}

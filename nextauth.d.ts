@@ -1,4 +1,4 @@
-import { DefaultSession, DefaultUser } from 'next-auth';
+import { DefaultUser } from 'next-auth';
 
 export enum Role {
   user = 'user',

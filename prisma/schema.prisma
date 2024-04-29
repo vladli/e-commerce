@@ -8,10 +8,9 @@ datasource db {
 }
 
 model Account {
-  id                       String  @id @default(auto()) @map("_id") @db.ObjectId
-  userId                   String  @db.ObjectId
-  user_id                  Int?    @unique //VKontakte
-  email                    String? @unique //VKontakte
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+
   type                     String
   provider                 String
   providerAccountId        String
@@ -66,16 +65,35 @@ model VerificationToken {
   @@unique([id, token])
 }
 
+model Store {
+  id         String      @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  userId     String      @db.ObjectId
+  billboards Billboard[] @relation("StoreBillboard")
+  createdAt  DateTime?   @default(now()) @map(name: "created_at")
+  updatedAt  DateTime?   @default(now()) @map(name: "updated_at")
+}
+
+model Billboard {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  storeId   String    @db.ObjectId
+  store     Store     @relation("StoreBillboard", fields: [storeId], references: [id])
+  label     String
+  image     String
+  createdAt DateTime? @default(now()) @map(name: "created_at")
+  updatedAt DateTime? @default(now()) @map(name: "updated_at")
+}
+
 model Products {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   description String?
   category    String?
   price       Float
-  image       String?
+  images      String[]
   inventory   Int
-  userId      String  @db.ObjectId
-  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId      String   @db.ObjectId
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   createdAt DateTime? @default(now()) @map(name: "created_at")
   updatedAt DateTime? @default(now()) @map(name: "updated_at")

@@ -5,6 +5,7 @@ defineProps({
     required: true
   }
 });
+const { data } = useAuth();
 </script>
 
 <template>
@@ -34,6 +35,10 @@ defineProps({
       </template>
       <template v-else>
         <div
+          v-if="
+            !child.roles?.length ||
+            child.roles.includes(data?.user?.role as string)
+          "
           :key="child.name"
           class="my-1"
         >

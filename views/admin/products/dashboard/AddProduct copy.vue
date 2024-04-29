@@ -8,12 +8,32 @@ const props = defineProps({
 
 const visible = defineModel<boolean>('visible');
 const productName = ref('');
-const productPrice = ref();
 const productInventory = ref();
-const imageLinks = ref([]);
+const productPrice = ref();
+const imageLinks = ref();
 const selectedCategory = ref();
 
 const loading = ref(false);
+
+const disabled = ref(false);
+const onAdvancedUpload = async (event: any) => {
+  disabled.value = true;
+  const files = event.files;
+  const images = [];
+  for (const img of files) {
+    const base64 = await getBase64FromUrl(img.objectURL);
+    images.push(base64);
+  }
+  const imgUpload = await $fetch('/api/upload', {
+    method: 'POST',
+    body: images
+  });
+  imageLinks.value = imgUpload;
+  if (imgUpload) {
+    disabled.value = false;
+    toast.success('Images uploaded successfully!');
+  }
+};
 
 async function addProduct() {
   await $fetch('/api/products/product', {
@@ -36,9 +56,6 @@ async function addProduct() {
     }
   });
 }
-const imageUpload = (data: any) => {
-  imageLinks.value.push(data.value.info.public_id as never);
-};
 </script>
 
 <template>
@@ -57,7 +74,7 @@ const imageUpload = (data: any) => {
         v-model="productName"
         placeholder="Product name"
       />
-      <div class="flex gap-2">
+      <div class="w-full">
         <CascadeSelect
           v-model="selectedCategory"
           class="w-1/3"
@@ -78,35 +95,22 @@ const imageUpload = (data: any) => {
         <InputNumber
           v-model="productInventory"
           class="w-1/3"
-          placeholder="Product inventory"
+          placeholder="Inventory"
         />
       </div>
-      <CldUploadWidget
-        v-slot="{ open }"
-        :options="{
-          sources: ['local', 'url']
-        }"
-        signature-endpoint="/api/imageUpload"
-        @upload="imageUpload"
+      <FileUpload
+        accept="image/*"
+        custom-upload
+        :disabled="disabled"
+        :max-file-size="1000000"
+        :multiple="true"
+        name="demo[]"
+        @uploader="onAdvancedUpload"
       >
-        <Button
-          type="button"
-          @click="open"
-        >
-          Upload an Image
-        </Button>
-      </CldUploadWidget>
-      <div
-        v-if="imageLinks.length > 0"
-        class="flex flex-wrap gap-2 bg-surface-900 p-2"
-      >
-        <Img
-          v-for="img in imageLinks"
-          :key="img"
-          :src="img"
-          width="150"
-        />
-      </div>
+        <template #empty>
+          <p>Drag and drop files to here to upload.</p>
+        </template>
+      </FileUpload>
     </form>
     <template #footer>
       <Button
