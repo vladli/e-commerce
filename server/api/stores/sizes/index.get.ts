@@ -10,10 +10,10 @@ export default defineEventHandler(async (event) => {
       userId: session?.user?.id
     }
   });
-  if (!storeByUser) {
+  if (!storeByUser || !query.storeId) {
     throw createError({
       statusCode: 404,
-      statusMessage: 'Billboard not found',
+      statusMessage: 'Store not found',
       fatal: true
     });
   }

@@ -9,19 +9,24 @@ const props = defineProps({
 const route = useRoute();
 const visible = ref(false);
 const storeName = ref('');
+const image = ref('');
 const createStore = async () => {
   const response = await $fetch('/api/stores/billboard/create', {
     method: 'POST',
     body: {
       label: storeName.value,
       storeId: route.params.storeId,
-      image: ''
+      image: image.value
     }
   });
   if (response) {
     toast.success('Billboard created successfully!');
     props.refresh();
   }
+};
+
+const imageUpload = (data: any) => {
+  image.value = data.value.info.public_id as never;
 };
 </script>
 
@@ -49,6 +54,24 @@ const createStore = async () => {
         placeholder="Billboard name"
         required
       />
+      <CldUploadWidget
+        v-slot="{ open }"
+        :options="{
+          sources: ['local', 'url'],
+          multiple: false,
+          cropping: true,
+          folder: `e-commerce/${route.params.storeId}/billboards`
+        }"
+        signature-endpoint="/api/imageUpload"
+        @upload="imageUpload"
+      >
+        <Button
+          type="button"
+          @click="open"
+        >
+          Upload an Image
+        </Button>
+      </CldUploadWidget>
     </form>
     <template #footer>
       <Button

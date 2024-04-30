@@ -1,5 +1,11 @@
 <script setup lang="ts">
-const { data, refresh } = useFetch('/api/stores/colors');
+const route = useRoute();
+
+const { data, refresh } = useFetch('/api/stores/colors', {
+  query: {
+    storeId: route.params.storeId
+  }
+});
 
 definePageMeta({
   layout: 'dashboard'
@@ -7,7 +13,7 @@ definePageMeta({
 </script>
 
 <template>
-  <Page title="Sizes">
+  <Page title="Colors">
     <DataTable :value="data">
       <template #header>
         <StoresCreateColor :refresh="refresh" />

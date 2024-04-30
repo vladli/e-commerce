@@ -1,5 +1,11 @@
 <script setup lang="ts">
-const { data, refresh } = useFetch('/api/stores/products');
+const route = useRoute();
+
+const { data, refresh } = useFetch('/api/stores/products', {
+  query: {
+    storeId: route.params.storeId
+  }
+});
 
 definePageMeta({
   layout: 'dashboard'
@@ -10,7 +16,7 @@ definePageMeta({
   <Page title="Products">
     <DataTable :value="data">
       <template #header>
-        <StoresCreateSize :refresh="refresh" />
+        <StoresCreateProduct :refresh="refresh" />
       </template>
       <Column
         field="name"
@@ -21,20 +27,20 @@ definePageMeta({
         header="price"
       />
       <Column
-        field="size"
+        field="size.name"
         header="size"
       />
       <Column
-        field="category"
+        field="category.name"
         header="category"
       />
       <Column
-        field="color"
+        field="color.name"
         header="color"
       />
 
       <template #footer>
-        In total there are {{ data ? data.length : 0 }} categories.
+        In total there are {{ data ? data.length : 0 }} products.
       </template>
     </DataTable>
   </Page>

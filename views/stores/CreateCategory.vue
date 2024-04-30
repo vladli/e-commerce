@@ -8,7 +8,7 @@ const props = defineProps({
     default: () => {}
   }
 });
-const { data } = await useFetch(`/api/stores/billboard/allBillboards`, {
+const { data } = await useFetch(`/api/stores/billboard`, {
   query: {
     storeId: route.params.storeId
   }

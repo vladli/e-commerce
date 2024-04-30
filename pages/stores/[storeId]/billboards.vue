@@ -28,10 +28,10 @@ definePageMeta({
       ></Column>
       <Column header="Image">
         <template #body="slotProps">
-          <img
+          <Img
             :alt="slotProps.data.image"
             class="w-24 rounded shadow-md"
-            :src="`https://primefaces.org/cdn/primevue/images/product/${slotProps.data.image}`"
+            :src="slotProps.data.image"
           />
         </template>
       </Column>

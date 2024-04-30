@@ -1,5 +1,11 @@
 <script setup lang="ts">
-const { data, refresh } = useFetch('/api/stores/sizes');
+const route = useRoute();
+
+const { data, refresh } = useFetch('/api/stores/sizes', {
+  query: {
+    storeId: route.params.storeId
+  }
+});
 
 definePageMeta({
   layout: 'dashboard'
