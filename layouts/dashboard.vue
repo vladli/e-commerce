@@ -11,12 +11,38 @@ const menu = computed(() => [
     icon: 'pi pi-home',
     route: `/stores/${storeId.value}`
   },
-
   {
-    title: 'Billboards',
-    icon: 'pi pi-image',
-    route: `/stores/${storeId.value}/billboards`
+    title: 'Edit',
+    icon: 'pi pi-pencil',
+    items: [
+      {
+        title: 'Billboards',
+        icon: 'pi pi-images',
+        route: `/stores/${storeId.value}/billboards`
+      },
+      {
+        title: 'Categories',
+        icon: 'pi pi-book',
+        route: `/stores/${storeId.value}/categories`
+      },
+      {
+        title: 'Sizes',
+        icon: 'pi pi-spinner-dotted',
+        route: `/stores/${storeId.value}/sizes`
+      },
+      {
+        title: 'Colors',
+        icon: 'pi pi-palette',
+        route: `/stores/${storeId.value}/colors`
+      },
+      {
+        title: 'Products',
+        icon: 'pi pi-barcode',
+        route: `/stores/${storeId.value}/products`
+      }
+    ]
   },
+
   {
     title: 'Settings',
     icon: 'pi pi-cog',
@@ -33,7 +59,7 @@ const menu = computed(() => [
         :model="menu"
         :pt="{
           root: 'rounded-none bg-transparent dark:bg-transparent h-20 px-4',
-          menu: 'bg-transparent dark:bg-transparent',
+          menu: 'md:bg-transparent md:dark:bg-transparent',
           content: 'rounded-none '
         }"
         :pt-options="{ mergeProps: true }"
@@ -41,7 +67,7 @@ const menu = computed(() => [
         <template #start>
           <Logo class="mr-4" />
         </template>
-        <template #item="{ item, props }">
+        <template #item="{ item, props, hasSubmenu, root }">
           <NuxtLink
             v-ripple
             v-bind="props.action"
@@ -51,6 +77,13 @@ const menu = computed(() => [
           >
             <span :class="item.icon" />
             <span class="ml-2">{{ item.title }}</span>
+            <i
+              v-if="hasSubmenu"
+              :class="[
+                'pi pi-angle-down text-primary-500 dark:text-primary-400',
+                { 'pi-angle-down ml-2': root, 'pi-angle-right ml-auto': !root }
+              ]"
+            ></i>
           </NuxtLink>
         </template>
         <template #end>

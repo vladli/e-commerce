@@ -3,6 +3,7 @@ import path from 'path';
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
+
   app: {
     head: {
       title: 'E-commerce | vladli.dev',

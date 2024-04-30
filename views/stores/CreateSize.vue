@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const route = useRoute();
+
 const props = defineProps({
   refresh: {
     type: Function,
@@ -6,17 +8,22 @@ const props = defineProps({
     default: () => {}
   }
 });
+
 const visible = ref(false);
-const storeName = ref('');
-const createStore = async () => {
-  const response = await $fetch('/api/stores/create', {
+const sizeName = ref();
+const sizeValue = ref();
+
+const createSize = async () => {
+  const response = await $fetch('/api/stores/sizes/create', {
     method: 'POST',
     body: {
-      name: storeName.value
+      storeId: route.params.storeId,
+      name: sizeName.value,
+      value: sizeValue.value
     }
   });
   if (response) {
-    toast.success('Store created successfully!');
+    toast.success('Size created successfully!');
     props.refresh();
   }
 };
@@ -25,7 +32,7 @@ const createStore = async () => {
 <template>
   <Button
     icon="pi pi-external-link"
-    label="New Store"
+    label="New Size"
     size="small"
     @click="visible = true"
   />
@@ -36,14 +43,19 @@ const createStore = async () => {
     modal
     :style="{ width: '20rem' }"
   >
-    <template #header>Create Store</template>
+    <template #header>Create Size</template>
 
     <form>
       <InputText
-        v-model="storeName"
-        autocomplete="off"
+        v-model="sizeName"
         class="w-full"
-        placeholder="Store name"
+        placeholder="Size name"
+        required
+      />
+      <InputText
+        v-model="sizeValue"
+        class="w-full"
+        placeholder="Value"
         required
       />
     </form>
@@ -52,7 +64,7 @@ const createStore = async () => {
         icon="pi pi-plus"
         label="Create"
         size="small"
-        @click="createStore"
+        @click="createSize"
       />
     </template>
   </Dialog>

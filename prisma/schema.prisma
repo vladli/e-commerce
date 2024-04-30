@@ -70,16 +70,85 @@ model Store {
   name       String
   userId     String      @db.ObjectId
   billboards Billboard[] @relation("StoreBillboard")
+  categories Category[]  @relation("StoreCategory")
+  sizes      Size[]      @relation("StoreSize")
+  colors     Color[]     @relation("StoreColor")
+  products   Product[]
   createdAt  DateTime?   @default(now()) @map(name: "created_at")
   updatedAt  DateTime?   @default(now()) @map(name: "updated_at")
 }
 
 model Billboard {
-  id        String    @id @default(auto()) @map("_id") @db.ObjectId
-  storeId   String    @db.ObjectId
-  store     Store     @relation("StoreBillboard", fields: [storeId], references: [id])
-  label     String
-  image     String
+  id         String     @id @default(auto()) @map("_id") @db.ObjectId
+  storeId    String     @db.ObjectId
+  store      Store      @relation("StoreBillboard", fields: [storeId], references: [id])
+  label      String
+  image      String
+  createdAt  DateTime?  @default(now()) @map(name: "created_at")
+  updatedAt  DateTime?  @default(now()) @map(name: "updated_at")
+  categories Category[]
+}
+
+model Category {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  storeId     String    @db.ObjectId
+  store       Store     @relation("StoreCategory", fields: [storeId], references: [id])
+  billboardId String    @db.ObjectId
+  billboard   Billboard @relation(fields: [billboardId], references: [id])
+  name        String
+  products    Product[]
+
+  createdAt DateTime? @default(now()) @map(name: "created_at")
+  updatedAt DateTime? @default(now()) @map(name: "updated_at")
+}
+
+model Size {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  storeId  String    @db.ObjectId
+  store    Store     @relation("StoreSize", fields: [storeId], references: [id])
+  name     String
+  value    String
+  products Product[]
+
+  createdAt DateTime? @default(now()) @map(name: "created_at")
+  updatedAt DateTime? @default(now()) @map(name: "updated_at")
+}
+
+model Color {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  storeId  String    @db.ObjectId
+  store    Store     @relation("StoreColor", fields: [storeId], references: [id])
+  name     String
+  value    String
+  products Product[]
+
+  createdAt DateTime? @default(now()) @map(name: "created_at")
+  updatedAt DateTime? @default(now()) @map(name: "updated_at")
+}
+
+model Product {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  storeId    String   @db.ObjectId
+  store      Store    @relation(fields: [storeId], references: [id])
+  categoryId String   @db.ObjectId
+  category   Category @relation(fields: [categoryId], references: [id])
+  name       String
+  price      Float
+  isFeatured Boolean  @default(false)
+  isAchived  Boolean  @default(false)
+  sizeId     String   @db.ObjectId
+  size       Size     @relation(fields: [sizeId], references: [id])
+  colorId    String   @db.ObjectId
+  color      Color    @relation(fields: [colorId], references: [id])
+  images     Image[]
+}
+
+model Image {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  productId String  @db.ObjectId
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url       String
+
   createdAt DateTime? @default(now()) @map(name: "created_at")
   updatedAt DateTime? @default(now()) @map(name: "updated_at")
 }

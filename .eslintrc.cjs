@@ -3,7 +3,8 @@ module.exports = {
   extends: [
     '@nuxt/eslint-config',
     'plugin:tailwindcss/recommended',
-    'plugin:vue/vue3-recommended'
+    'plugin:vue/vue3-recommended',
+    'prettier'
   ],
 
   rules: {
@@ -24,7 +25,6 @@ module.exports = {
       }
     ],
     'vue/singleline-html-element-content-newline': ['off'],
-    'vue/script-indent': ['off'],
     'vue/attributes-order': [
       'error',
       {

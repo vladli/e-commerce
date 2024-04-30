@@ -22,7 +22,7 @@
     "cloudinary": "^2.2.0",
     "primeicons": "^7.0.0",
     "primevue": "^3.52.0",
-    "vue": "^3.4.25",
+    "vue": "^3.4.26",
     "vue-router": "^4.3.2"
   },
   "devDependencies": {
@@ -38,9 +38,9 @@
     "nuxt": "^3.11.2",
     "nuxt-icon": "^0.6.10",
     "nuxt-primevue": "^0.3.1",
-    "nuxt-security": "^1.4.2",
+    "nuxt-security": "^1.4.3",
     "prisma": "^5.13.0",
     "typescript": "^5.4.5",
-    "vue-tsc": "^2.0.14"
+    "vue-tsc": "^1.8.27"
   }
 }

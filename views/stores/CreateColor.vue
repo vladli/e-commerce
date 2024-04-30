@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const route = useRoute();
+
 const props = defineProps({
   refresh: {
     type: Function,
@@ -6,17 +8,22 @@ const props = defineProps({
     default: () => {}
   }
 });
+
 const visible = ref(false);
-const storeName = ref('');
-const createStore = async () => {
-  const response = await $fetch('/api/stores/create', {
+const colorName = ref();
+const colorValue = ref();
+
+const createColor = async () => {
+  const response = await $fetch('/api/stores/colors/create', {
     method: 'POST',
     body: {
-      name: storeName.value
+      storeId: route.params.storeId,
+      name: colorName.value,
+      value: colorValue.value
     }
   });
   if (response) {
-    toast.success('Store created successfully!');
+    toast.success('Color created successfully!');
     props.refresh();
   }
 };
@@ -25,7 +32,7 @@ const createStore = async () => {
 <template>
   <Button
     icon="pi pi-external-link"
-    label="New Store"
+    label="New Color"
     size="small"
     @click="visible = true"
   />
@@ -36,15 +43,21 @@ const createStore = async () => {
     modal
     :style="{ width: '20rem' }"
   >
-    <template #header>Create Store</template>
+    <template #header>Create Color</template>
 
     <form>
       <InputText
-        v-model="storeName"
-        autocomplete="off"
+        v-model="colorName"
         class="w-full"
-        placeholder="Store name"
+        placeholder="Color name"
         required
+      />
+
+      <ColorPicker
+        v-model="colorValue"
+        class="mb-3"
+        format="hex"
+        input-id="cp-hex"
       />
     </form>
     <template #footer>
@@ -52,7 +65,7 @@ const createStore = async () => {
         icon="pi pi-plus"
         label="Create"
         size="small"
-        @click="createStore"
+        @click="createColor"
       />
     </template>
   </Dialog>

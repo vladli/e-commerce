@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const route = useRoute();
-const { data, error } = await useFetch(`/api/stores/billboard/:storeId`, {
+const { data, error, refresh } = await useFetch(`/api/stores/billboard`, {
   query: {
     storeId: route.params.storeId
   }
@@ -20,7 +20,7 @@ definePageMeta({
   <Page title="Billboards">
     <DataTable :value="data">
       <template #header>
-        <StoresCreateBillboard />
+        <StoresCreateBillboard :refresh="refresh" />
       </template>
       <Column
         field="label"

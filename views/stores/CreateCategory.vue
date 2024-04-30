@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const route = useRoute();
+
 const props = defineProps({
   refresh: {
     type: Function,
@@ -6,20 +8,26 @@ const props = defineProps({
     default: () => {}
   }
 });
-const route = useRoute();
+const { data } = await useFetch(`/api/stores/billboard/allBillboards`, {
+  query: {
+    storeId: route.params.storeId
+  }
+});
 const visible = ref(false);
-const storeName = ref('');
-const createStore = async () => {
-  const response = await $fetch('/api/stores/billboard/create', {
+const categoryName = ref('');
+const selectedBillboard = ref();
+
+const createCategory = async () => {
+  const response = await $fetch('/api/stores/categories/create', {
     method: 'POST',
     body: {
-      label: storeName.value,
       storeId: route.params.storeId,
-      image: ''
+      billboardId: selectedBillboard.value.id,
+      name: categoryName.value
     }
   });
   if (response) {
-    toast.success('Billboard created successfully!');
+    toast.success('Category created successfully!');
     props.refresh();
   }
 };
@@ -28,7 +36,7 @@ const createStore = async () => {
 <template>
   <Button
     icon="pi pi-external-link"
-    label="New Billboard"
+    label="New Category"
     size="small"
     @click="visible = true"
   />
@@ -39,15 +47,22 @@ const createStore = async () => {
     modal
     :style="{ width: '20rem' }"
   >
-    <template #header>Create Billboard</template>
+    <template #header>Create Category</template>
 
     <form>
       <InputText
-        v-model="storeName"
+        v-model="categoryName"
         autocomplete="off"
         class="w-full"
-        placeholder="Billboard name"
+        placeholder="Category name"
         required
+      />
+      <Dropdown
+        v-model="selectedBillboard"
+        class="w-full md:w-56"
+        option-label="label"
+        :options="data as any[]"
+        placeholder="Select a Billboard"
       />
     </form>
     <template #footer>
@@ -55,7 +70,7 @@ const createStore = async () => {
         icon="pi pi-plus"
         label="Create"
         size="small"
-        @click="createStore"
+        @click="createCategory"
       />
     </template>
   </Dialog>
