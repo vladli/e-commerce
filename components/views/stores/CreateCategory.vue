@@ -14,23 +14,41 @@ const { data } = await useFetch(`/api/stores/billboard`, {
   }
 });
 const visible = ref(false);
-const categoryName = ref('');
-const selectedBillboard = ref();
 
-const createCategory = async () => {
+const validationSchema = toTypedSchema(
+  z.object({
+    name: z.string().min(1, {
+      message: 'Name is required'
+    }),
+    selectedBillboard: z.object({
+      id: z.string()
+    })
+  })
+);
+
+const { handleSubmit, errors, meta } = useForm({
+  validationSchema
+});
+
+const { value: name } = useField<string>('name');
+const { value: selectedBillboard } = useField('selectedBillboard');
+
+const onSubmit = handleSubmit(async (values, actions) => {
   const response = await $fetch('/api/stores/categories/create', {
     method: 'POST',
     body: {
       storeId: route.params.storeId,
-      billboardId: selectedBillboard.value.id,
-      name: categoryName.value
+      billboardId: values.selectedBillboard.id,
+      name: values.name
     }
   });
   if (response) {
     toast.success('Category created successfully!');
     props.refresh();
+    visible.value = false;
+    actions.resetForm();
   }
-};
+});
 </script>
 
 <template>
@@ -49,29 +67,35 @@ const createCategory = async () => {
   >
     <template #header>Create Category</template>
 
-    <form>
+    <form
+      class="flex flex-col gap-2"
+      @submit="onSubmit"
+    >
       <InputText
-        v-model="categoryName"
-        autocomplete="off"
-        class="w-full"
+        v-model="name"
+        :invalid="errors.name ? true : false"
         placeholder="Category name"
         required
       />
+      <small v-if="errors.name">{{ errors.name }}</small>
       <Dropdown
         v-model="selectedBillboard"
-        class="w-full md:w-56"
+        :invalid="errors.selectedBillboard ? true : false"
         option-label="label"
         :options="data as any[]"
         placeholder="Select a Billboard"
+        required
       />
-    </form>
-    <template #footer>
+      <small v-if="errors.selectedBillboard">
+        {{ errors.selectedBillboard }}
+      </small>
       <Button
+        :disabled="!meta.valid"
         icon="pi pi-plus"
         label="Create"
         size="small"
-        @click="createCategory"
+        type="submit"
       />
-    </template>
+    </form>
   </Dialog>
 </template>

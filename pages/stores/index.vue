@@ -5,7 +5,7 @@ const { data, refresh } = useFetch('/api/stores');
 <template>
   <Page title="My Stores">
     <div class="flex justify-end">
-      <StoresCreateStore :refresh="refresh" />
+      <ViewsStoresCreateStore :refresh="refresh" />
     </div>
     <div
       v-if="data && data.length > 0"

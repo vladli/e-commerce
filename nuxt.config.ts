@@ -20,8 +20,21 @@ export default defineNuxtConfig({
     '@sidebase/nuxt-auth',
     // 'nuxt-security',
     '@pinia/nuxt',
-    '@nuxtjs/cloudinary'
+    '@nuxtjs/cloudinary',
+    '@vee-validate/nuxt'
   ],
+  imports: {
+    presets: [
+      {
+        from: 'zod',
+        imports: ['z']
+      },
+      {
+        from: '@vee-validate/zod',
+        imports: ['toTypedSchema']
+      }
+    ]
+  },
   image: {
     cloudinary: {
       baseURL: `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/`
@@ -32,7 +45,7 @@ export default defineNuxtConfig({
     uploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET,
     apiKey: process.env.CLOUDINARY_API_KEY
   },
-  components: [{ path: '~/views', pathPrefix: true }, '~/components'],
+  // components: [{ path: '~/views', pathPrefix: true }, '~/components'],
   colorMode: {
     classSuffix: ''
   },

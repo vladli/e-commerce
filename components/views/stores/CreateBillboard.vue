@@ -8,13 +8,27 @@ const props = defineProps({
 });
 const route = useRoute();
 const visible = ref(false);
-const storeName = ref('');
 const image = ref('');
-const createStore = async () => {
+
+const validationSchema = toTypedSchema(
+  z.object({
+    name: z.string().min(1, {
+      message: 'Name is required'
+    })
+  })
+);
+
+const { handleSubmit, errors, meta } = useForm({
+  validationSchema
+});
+
+const { value: name } = useField<string>('name');
+
+const onSubmit = handleSubmit(async (values, actions) => {
   const response = await $fetch('/api/stores/billboard/create', {
     method: 'POST',
     body: {
-      label: storeName.value,
+      label: values.name,
       storeId: route.params.storeId,
       image: image.value
     }
@@ -22,8 +36,10 @@ const createStore = async () => {
   if (response) {
     toast.success('Billboard created successfully!');
     props.refresh();
+    visible.value = false;
+    actions.resetForm();
   }
-};
+});
 
 const imageUpload = (data: any) => {
   image.value = data.value.info.public_id as never;
@@ -46,14 +62,17 @@ const imageUpload = (data: any) => {
   >
     <template #header>Create Billboard</template>
 
-    <form>
+    <form
+      class="flex flex-col gap-2"
+      @submit="onSubmit"
+    >
       <InputText
-        v-model="storeName"
-        autocomplete="off"
-        class="w-full"
+        v-model="name"
+        :invalid="errors.name ? true : false"
         placeholder="Billboard name"
         required
       />
+      <small v-if="errors.name">{{ errors.name }}</small>
       <CldUploadWidget
         v-slot="{ open }"
         :options="{
@@ -66,20 +85,22 @@ const imageUpload = (data: any) => {
         @upload="imageUpload"
       >
         <Button
+          outlined
+          severity="secondary"
+          size="small"
           type="button"
           @click="open"
         >
           Upload an Image
         </Button>
       </CldUploadWidget>
-    </form>
-    <template #footer>
       <Button
+        :disabled="!meta.valid"
         icon="pi pi-plus"
         label="Create"
         size="small"
-        @click="createStore"
+        type="submit"
       />
-    </template>
+    </form>
   </Dialog>
 </template>

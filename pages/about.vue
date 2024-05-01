@@ -4,5 +4,5 @@ useHead({
 });
 </script>
 <template>
-  <Page title="About Page">asd</Page>
+  <Page title="About Page"></Page>
 </template>

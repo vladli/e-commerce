@@ -6,20 +6,37 @@ const props = defineProps({
     default: () => {}
   }
 });
+
 const visible = ref(false);
-const storeName = ref('');
-const createStore = async () => {
+
+const validationSchema = toTypedSchema(
+  z.object({
+    name: z.string().min(1, {
+      message: 'Name is required'
+    })
+  })
+);
+
+const { handleSubmit, errors, meta } = useForm({
+  validationSchema
+});
+
+const { value: name } = useField<string>('name');
+
+const onSubmit = handleSubmit(async (values, actions) => {
   const response = await $fetch('/api/stores/create', {
     method: 'POST',
     body: {
-      name: storeName.value
+      name: values.name
     }
   });
   if (response) {
     toast.success('Store created successfully!');
     props.refresh();
+    visible.value = false;
+    actions.resetForm();
   }
-};
+});
 </script>
 
 <template>
@@ -37,23 +54,24 @@ const createStore = async () => {
     :style="{ width: '20rem' }"
   >
     <template #header>Create Store</template>
-
-    <form>
+    <form
+      class="flex flex-col gap-2"
+      @submit="onSubmit"
+    >
       <InputText
-        v-model="storeName"
-        autocomplete="off"
+        v-model="name"
         class="w-full"
+        :invalid="errors.name ? true : false"
         placeholder="Store name"
-        required
       />
-    </form>
-    <template #footer>
+      <small v-if="errors.name">{{ errors.name }}</small>
       <Button
+        :disabled="!meta.valid"
         icon="pi pi-plus"
         label="Create"
         size="small"
-        @click="createStore"
+        type="submit"
       />
-    </template>
+    </form>
   </Dialog>
 </template>

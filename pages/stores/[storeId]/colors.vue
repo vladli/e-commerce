@@ -16,7 +16,7 @@ definePageMeta({
   <Page title="Colors">
     <DataTable :value="data">
       <template #header>
-        <StoresCreateColor :refresh="refresh" />
+        <ViewsStoresCreateColor :refresh="refresh" />
       </template>
       <Column
         field="name"
@@ -33,7 +33,7 @@ definePageMeta({
       ></Column>
 
       <template #footer>
-        In total there are {{ data ? data.length : 0 }} categories.
+        In total there are {{ data ? data.length : 0 }} colors.
       </template>
     </DataTable>
   </Page>

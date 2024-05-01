@@ -29,13 +29,13 @@ const getSeverity = (item: any) => {
         </div>
       </template>
       <template #list="slotProps">
-        <MainListView
+        <ViewsMainListView
           :get-severity="getSeverity"
           :items="slotProps.items"
         />
       </template>
       <template #grid="slotProps">
-        <MainGridView
+        <ViewsMainGridView
           :get-severity="getSeverity"
           :items="slotProps.items"
         />

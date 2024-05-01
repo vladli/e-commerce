@@ -16,7 +16,7 @@ definePageMeta({
   <Page title="Products">
     <DataTable :value="data">
       <template #header>
-        <StoresCreateProduct :refresh="refresh" />
+        <ViewsStoresCreateProduct :refresh="refresh" />
       </template>
       <Column
         field="name"

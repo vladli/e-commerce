@@ -20,7 +20,7 @@ definePageMeta({
   <Page title="Billboards">
     <DataTable :value="data">
       <template #header>
-        <StoresCreateBillboard :refresh="refresh" />
+        <ViewsStoresCreateBillboard :refresh="refresh" />
       </template>
       <Column
         field="label"
@@ -31,6 +31,7 @@ definePageMeta({
           <Img
             :alt="slotProps.data.image"
             class="w-24 rounded shadow-md"
+            preview
             :src="slotProps.data.image"
           />
         </template>

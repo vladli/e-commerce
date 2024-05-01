@@ -63,11 +63,6 @@ export const mainMenu: MenuItem[] = [
     roles: ['admin'],
     children: [
       {
-        name: 'All Products',
-        icon: '',
-        path: '/admin/products/dashboard'
-      },
-      {
         name: 'All Users',
         icon: '',
         path: '/admin/users'
