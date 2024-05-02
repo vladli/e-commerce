@@ -2,9 +2,9 @@
 const route = useRoute();
 const id = route.params.id;
 
-const { data, error } = useFetch('/api/products/product', {
+const { data, error } = useFetch('/api/stores/product', {
   query: {
-    id
+    productId: id
   }
 });
 if (error.value) {
@@ -24,7 +24,7 @@ if (error.value) {
       alt="Product image"
       image-class="rounded-md"
       preview
-      :src="data?.images?.[0] || ''"
+      :src="data?.images?.[0].url || ''"
       width="200"
     />
   </Page>

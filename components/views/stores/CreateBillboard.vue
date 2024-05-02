@@ -18,7 +18,7 @@ const validationSchema = toTypedSchema(
   })
 );
 
-const { handleSubmit, errors, meta } = useForm({
+const { handleSubmit, errors, meta, resetForm } = useForm({
   validationSchema
 });
 
@@ -59,6 +59,7 @@ const imageUpload = (data: any) => {
     :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
     modal
     :style="{ width: '20rem' }"
+    @hide="resetForm"
   >
     <template #header>Create Billboard</template>
 

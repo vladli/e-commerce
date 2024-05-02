@@ -27,7 +27,7 @@ const validationSchema = toTypedSchema(
   })
 );
 
-const { handleSubmit, errors, meta } = useForm({
+const { handleSubmit, errors, meta, resetForm } = useForm({
   validationSchema
 });
 
@@ -65,6 +65,7 @@ const onSubmit = handleSubmit(async (values, actions) => {
     :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
     modal
     :style="{ width: '20rem' }"
+    @hide="resetForm"
   >
     <template #header>Create Color</template>
 

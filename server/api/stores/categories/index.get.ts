@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
       fatal: true
     });
   }
-  const category = await prisma.category.findMany({
+  const result = await prisma.category.findMany({
     where: {
       storeId: query.storeId as string
     },
@@ -25,5 +25,5 @@ export default defineEventHandler(async (event) => {
       billboard: true
     }
   });
-  return category;
+  return result;
 });

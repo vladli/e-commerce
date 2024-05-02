@@ -18,7 +18,7 @@ defineProps<{
           <div class="flex items-center gap-2">
             <i class="pi pi-tag" />
             <span class="font-semibold">
-              {{ getCnameByCode(item.category) || item.category }}
+              {{ item?.category?.name }}
             </span>
           </div>
           <Tag
@@ -30,7 +30,7 @@ defineProps<{
           <Img
             :alt="item.name"
             class="rounded shadow-md"
-            :src="item.images?.[0]"
+            :src="item.images?.[0].url || ''"
             width="200"
           />
           <div class="text-2xl font-bold">

@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import type { DataViewProps } from 'primevue/dataview';
 
-const { data } = useFetch('/api/products');
+const { data } = useFetch('/api/stores/products/all');
 
 const layout = ref<DataViewProps['layout']>('grid');
 
 const getSeverity = (item: any) => {
   return item.inventory >= 10 ? 'success' : 'danger';
 };
+console.log(data);
 </script>
 
 <template>

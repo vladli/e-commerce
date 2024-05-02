@@ -25,38 +25,67 @@ const { data: colors } = await useFetch('/api/stores/colors', {
   }
 });
 const visible = ref(false);
-const productName = ref();
-const productPrice = ref();
+
 const productIsFeatured = ref();
 const productIsAchieved = ref();
-const sizeId = ref();
-const categoryId = ref();
-const colorId = ref();
-const images = ref([]);
 
-const createSize = async () => {
+const validationSchema = toTypedSchema(
+  z.object({
+    name: z.string().min(1, {
+      message: 'Name is required'
+    }),
+    price: z.number().min(1, {
+      message: 'Value is required'
+    }),
+    categoryId: z.object({
+      id: z.string()
+    }),
+    sizeId: z.object({
+      id: z.string()
+    }),
+    colorId: z.object({
+      id: z.string()
+    }),
+    images: z.array(z.string())
+  })
+);
+
+const { handleSubmit, meta, resetForm } = useForm({
+  validationSchema
+});
+
+const { value: name } = useField<string>('name');
+const { value: price } = useField<number>('price');
+const { value: categoryId } = useField('categoryId');
+const { value: sizeId } = useField('sizeId');
+const { value: colorId } = useField('colorId');
+const { push } = useFieldArray('images');
+
+const onSubmit = handleSubmit(async (values, actions) => {
   const response = await $fetch('/api/stores/products/create', {
     method: 'POST',
     body: {
       storeId: route.params.storeId,
-      categoryId: categoryId.value.id as string,
-      name: productName.value,
-      price: productPrice.value,
+      categoryId: values.categoryId.id,
+      name: values.name,
+      price: values.price,
       isFeatured: productIsFeatured.value,
       isAchieved: productIsAchieved.value,
-      sizeId: sizeId.value.id,
-      colorId: colorId.value.id,
-      images: images.value
+      sizeId: values.sizeId.id,
+      colorId: values.colorId.id,
+      images: values.images
     }
   });
   if (response) {
     toast.success('Product created successfully!');
     props.refresh();
+    visible.value = false;
+    actions.resetForm();
   }
-};
+});
 
 const imageUpload = async (data: any) => {
-  images.value.push(data.value.info.public_id as never);
+  push(data.value.info.public_id as never);
 };
 </script>
 
@@ -73,68 +102,68 @@ const imageUpload = async (data: any) => {
     :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
     modal
     :style="{ width: '20rem' }"
+    @hide="resetForm"
   >
     <template #header>Create Product</template>
 
-    <form>
+    <form
+      class="flex flex-col gap-2"
+      @submit="onSubmit"
+    >
       <InputText
-        v-model="productName"
-        class="w-full"
+        v-model="name"
         placeholder="Product name"
         required
       />
       <InputNumber
-        v-model="productPrice"
-        class="w-full"
+        v-model="price"
         placeholder="Product price"
         required
       />
       <Dropdown
         v-model="categoryId"
-        class="w-full md:w-56"
         option-label="name"
         :options="categories as any[]"
-        placeholder="Select a Category"
+        placeholder="Select category"
       />
       <Dropdown
         v-model="sizeId"
-        class="w-full md:w-56"
         option-label="name"
         :options="sizes as any[]"
-        placeholder="Select a Category"
+        placeholder="Select size"
       />
       <Dropdown
         v-model="colorId"
-        class="w-full md:w-56"
         option-label="name"
         :options="colors as any[]"
-        placeholder="Select a Category"
+        placeholder="Select color"
       />
       <CldUploadWidget
         v-slot="{ open }"
         :options="{
           sources: ['local', 'url'],
-
           folder: `e-commerce/${route.params.storeId}/products`
         }"
         signature-endpoint="/api/imageUpload"
         @upload="imageUpload"
       >
         <Button
+          outlined
+          severity="secondary"
+          size="small"
           type="button"
           @click="open"
         >
           Upload an Image
         </Button>
       </CldUploadWidget>
-    </form>
-    <template #footer>
       <Button
+        :disabled="!meta.valid"
         icon="pi pi-plus"
         label="Create"
         size="small"
-        @click="createSize"
+        type="submit"
       />
-    </template>
+    </form>
   </Dialog>
 </template>
