@@ -33,21 +33,24 @@ const { handleSubmit, errors, meta, resetForm } = useForm({
 const { value: name } = useField<string>('name');
 const { value: selectedBillboard } = useField('selectedBillboard');
 
-const onSubmit = handleSubmit(async (values, actions) => {
-  const response = await $fetch('/api/stores/categories/create', {
+const onSubmit = handleSubmit((values, actions) => {
+  const response = $fetch('/api/stores/categories/create', {
     method: 'POST',
     body: {
       storeId: route.params.storeId,
       billboardId: values.selectedBillboard.id,
       name: values.name
     }
-  });
-  if (response) {
-    toast.success('Category created successfully!');
+  }).then(() => {
     props.refresh();
     visible.value = false;
     actions.resetForm();
-  }
+  });
+  toast.promise(response, {
+    loading: 'Creating category...',
+    success: 'Category created successfully!',
+    error: 'An error occurred while creating the category'
+  });
 });
 </script>
 

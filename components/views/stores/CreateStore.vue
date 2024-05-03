@@ -23,19 +23,22 @@ const { handleSubmit, errors, meta, resetForm } = useForm({
 
 const { value: name } = useField<string>('name');
 
-const onSubmit = handleSubmit(async (values, actions) => {
-  const response = await $fetch('/api/stores/create', {
+const onSubmit = handleSubmit((values, actions) => {
+  const response = $fetch('/api/stores/create', {
     method: 'POST',
     body: {
       name: values.name
     }
-  });
-  if (response) {
-    toast.success('Store created successfully!');
+  }).then(() => {
     props.refresh();
     visible.value = false;
     actions.resetForm();
-  }
+  });
+  toast.promise(response, {
+    loading: 'Creating store...',
+    success: 'Store created successfully!',
+    error: 'An error occurred while creating the store'
+  });
 });
 </script>
 

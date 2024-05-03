@@ -61,8 +61,8 @@ const { value: sizeId } = useField('sizeId');
 const { value: colorId } = useField('colorId');
 const { push } = useFieldArray('images');
 
-const onSubmit = handleSubmit(async (values, actions) => {
-  const response = await $fetch('/api/stores/products/create', {
+const onSubmit = handleSubmit((values, actions) => {
+  const response = $fetch('/api/stores/products/create', {
     method: 'POST',
     body: {
       storeId: route.params.storeId,
@@ -75,13 +75,16 @@ const onSubmit = handleSubmit(async (values, actions) => {
       colorId: values.colorId.id,
       images: values.images
     }
-  });
-  if (response) {
-    toast.success('Product created successfully!');
+  }).then(() => {
     props.refresh();
     visible.value = false;
     actions.resetForm();
-  }
+  });
+  toast.promise(response, {
+    loading: 'Creating product...',
+    success: 'Product created successfully!',
+    error: 'An error occurred while creating the product'
+  });
 });
 
 const imageUpload = async (data: any) => {

@@ -7,6 +7,22 @@ const { data, refresh } = useFetch('/api/stores/colors', {
   }
 });
 
+const deleteColor = (data: any) => {
+  const result = $fetch('/api/stores/colors', {
+    method: 'DELETE',
+    body: {
+      id: data.id
+    }
+  }).then(() => {
+    refresh();
+  });
+  toast.promise(result, {
+    loading: 'Deleting color...',
+    success: 'Color deleted successfully!',
+    error: 'An error occurred while deleting the color'
+  });
+};
+
 definePageMeta({
   layout: 'dashboard'
 });
@@ -31,7 +47,17 @@ definePageMeta({
         field="createdAt"
         header="Created At"
       ></Column>
-
+      <Column header="">
+        <template #body="{ data }">
+          <Button
+            icon="pi pi-trash"
+            rounded
+            severity="danger"
+            text
+            @click="deleteColor(data)"
+          />
+        </template>
+      </Column>
       <template #footer>
         In total there are {{ data ? data.length : 0 }} colors.
       </template>

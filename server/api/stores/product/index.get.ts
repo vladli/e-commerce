@@ -9,9 +9,13 @@ export default defineEventHandler(async (event) => {
     },
     include: {
       category: true,
-      size: true,
-      color: true,
-      images: true
+      images: true,
+      inventory: {
+        include: {
+          color: true,
+          size: true
+        }
+      }
     }
   });
   return result;

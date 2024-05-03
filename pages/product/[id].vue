@@ -13,6 +13,7 @@ if (error.value) {
     statusMessage: error.value.statusMessage
   });
 }
+console.log(data.value);
 </script>
 
 <template>
@@ -20,12 +21,29 @@ if (error.value) {
     class="flex flex-col items-center"
     :title="data?.name"
   >
-    <Img
-      alt="Product image"
-      image-class="rounded-md"
-      preview
-      :src="data?.images?.[0].url || ''"
-      width="200"
-    />
+    <Galleria
+      :circular="true"
+      container-style="max-width: 420px"
+      :num-visible="5"
+      :show-item-navigators="true"
+      :value="data?.images"
+    >
+      <template #item="slotProps">
+        <Img
+          alt=""
+          :src="slotProps.item.url"
+          style="width: 100%; display: block"
+        />
+      </template>
+      <template #thumbnail="slotProps">
+        <Img
+          alt=""
+          :src="slotProps.item.url"
+          style="display: block"
+        />
+      </template>
+    </Galleria>
+
+    <div></div>
   </Page>
 </template>

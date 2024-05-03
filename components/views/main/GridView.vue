@@ -21,10 +21,6 @@ defineProps<{
               {{ item?.category?.name }}
             </span>
           </div>
-          <Tag
-            :severity="getSeverity(item)"
-            :value="isInStock(item)"
-          />
         </div>
         <div class="flex flex-col items-center gap-3 py-5">
           <Img
@@ -33,13 +29,10 @@ defineProps<{
             :src="item.images?.[0].url || ''"
             width="200"
           />
-          <div class="text-2xl font-bold">
-            {{ item.name }}
-          </div>
         </div>
-        <div class="flex items-center justify-between">
-          <span class="text-2xl font-semibold">${{ item.price }}</span>
-          <CartAddButton :item="item" />
+        <div class="flex items-center justify-around text-2xl font-bold">
+          <span>{{ item.name }}</span>
+          <span>${{ item.price }}</span>
         </div>
       </div>
     </NuxtLink>

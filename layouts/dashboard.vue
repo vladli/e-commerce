@@ -39,6 +39,11 @@ const menu = computed(() => [
         title: 'Products',
         icon: 'pi pi-barcode',
         route: `/stores/${storeId.value}/products`
+      },
+      {
+        title: 'Inventory',
+        icon: 'pi pi-list',
+        route: `/stores/${storeId.value}/inventory`
       }
     ]
   },

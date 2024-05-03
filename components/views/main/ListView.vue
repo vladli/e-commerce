@@ -38,17 +38,12 @@ defineProps<{
                   {{ item.category?.name }}
                 </span>
               </span>
-              <Tag
-                :severity="getSeverity(item)"
-                :value="isInStock(item)"
-              />
             </div>
           </div>
           <div
             class="flex items-center gap-3 sm:flex-col sm:items-end sm:gap-2"
           >
             <span class="text-2xl font-semibold">${{ item.price }}</span>
-            <CartAddButton :item="item" />
           </div>
         </div>
       </NuxtLink>

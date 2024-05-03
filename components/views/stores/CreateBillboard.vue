@@ -24,21 +24,24 @@ const { handleSubmit, errors, meta, resetForm } = useForm({
 
 const { value: name } = useField<string>('name');
 
-const onSubmit = handleSubmit(async (values, actions) => {
-  const response = await $fetch('/api/stores/billboard/create', {
+const onSubmit = handleSubmit((values, actions) => {
+  const response = $fetch('/api/stores/billboard/create', {
     method: 'POST',
     body: {
       label: values.name,
       storeId: route.params.storeId,
       image: image.value
     }
-  });
-  if (response) {
-    toast.success('Billboard created successfully!');
+  }).then(() => {
     props.refresh();
     visible.value = false;
     actions.resetForm();
-  }
+  });
+  toast.promise(response, {
+    loading: 'Creating billboard...',
+    success: 'Billboard created successfully!',
+    error: 'An error occurred while creating the billboard'
+  });
 });
 
 const imageUpload = (data: any) => {

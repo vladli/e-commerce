@@ -8,6 +8,7 @@ module.exports = {
   ],
 
   rules: {
+    'no-console': 'warn',
     'tailwindcss/no-custom-classname': [
       'warn',
       {

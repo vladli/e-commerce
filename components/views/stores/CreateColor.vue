@@ -34,21 +34,24 @@ const { handleSubmit, errors, meta, resetForm } = useForm({
 const { value: name } = useField<string>('name');
 const { value: value } = useField<string>('value');
 
-const onSubmit = handleSubmit(async (values, actions) => {
-  const response = await $fetch('/api/stores/colors/create', {
+const onSubmit = handleSubmit((values, actions) => {
+  const response = $fetch('/api/stores/colors/create', {
     method: 'POST',
     body: {
       storeId: route.params.storeId,
       name: values.name,
       value: values.value
     }
-  });
-  if (response) {
-    toast.success('Color created successfully!');
+  }).then(() => {
     props.refresh();
     visible.value = false;
     actions.resetForm();
-  }
+  });
+  toast.promise(response, {
+    loading: 'Creating color...',
+    success: 'Color created successfully!',
+    error: 'An error occurred while creating the color'
+  });
 });
 </script>
 
