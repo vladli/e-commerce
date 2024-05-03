@@ -1,6 +1,10 @@
 <script setup lang="ts">
 const route = useRoute();
-const { data, error, refresh } = await useFetch(`/api/stores/billboard`, {
+const {
+  data: billboards,
+  error,
+  refresh
+} = await useFetch(`/api/stores/billboard`, {
   query: {
     storeId: route.params.storeId
   }
@@ -11,6 +15,23 @@ if (error.value) {
     statusMessage: error.value.statusMessage
   });
 }
+
+const deleteBillboard = (data: any) => {
+  const result = $fetch('/api/stores/billboard', {
+    method: 'DELETE',
+    body: {
+      id: data.id
+    }
+  }).then(() => {
+    refresh();
+  });
+  toast.promise(result, {
+    loading: 'Deleting billboard...',
+    success: 'Billboard deleted successfully!',
+    error: 'An error occurred while deleting the billboard'
+  });
+};
+
 definePageMeta({
   layout: 'dashboard'
 });
@@ -18,7 +39,7 @@ definePageMeta({
 
 <template>
   <Page title="Billboards">
-    <DataTable :value="data">
+    <DataTable :value="billboards">
       <template #header>
         <ViewsStoresCreateBillboard :refresh="refresh" />
       </template>
@@ -41,9 +62,19 @@ definePageMeta({
         field="createdAt"
         header="Created At"
       ></Column>
-
+      <Column header="">
+        <template #body="{ data }">
+          <Button
+            icon="pi pi-trash"
+            rounded
+            severity="danger"
+            text
+            @click="deleteBillboard(data)"
+          />
+        </template>
+      </Column>
       <template #footer>
-        In total there are {{ data ? data.length : 0 }} billboards.
+        In total there are {{ billboards ? billboards.length : 0 }} billboards.
       </template>
     </DataTable>
   </Page>

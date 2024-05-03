@@ -66,7 +66,7 @@ export default {
         root: ({ props, context, parent }) => ({
             class: [
                 // Font
-                'font-sans leading-none',
+                'leading-none',
 
                 // Flex
                 { 'flex-1 w-[1%]': parent.instance.$name == 'InputGroup' },
@@ -102,6 +102,9 @@ export default {
                     'focus:outline-none focus:outline-offset-0 focus:ring focus:ring-primary-500/50 dark:focus:ring-primary-400/50 focus:z-10': !context.disabled,
                     'opacity-60 select-none pointer-events-none cursor-default': context.disabled
                 },
+
+                // Filled State *for FloatLabel
+                { filled: parent.instance?.$parentInstance?.$name == 'FloatLabel' && parent.props.modelValue !== null && parent.props.modelValue?.length !== 0 },
 
                 // Misc
                 'appearance-none',

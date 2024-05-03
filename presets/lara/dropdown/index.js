@@ -1,16 +1,22 @@
 export default {
-    root: ({ props, state }) => ({
+    root: ({ props, state, parent }) => ({
         class: [
             // Display and Position
             'inline-flex',
             'relative',
 
             // Shape
-            'rounded-md',
+            { 'rounded-md': parent.instance.$name !== 'InputGroup' },
+            { 'first:rounded-l-md rounded-none last:rounded-r-md': parent.instance.$name == 'InputGroup' },
+            { 'border-0 border-y border-l last:border-r': parent.instance.$name == 'InputGroup' },
+            { 'first:ml-0 ml-[-1px]': parent.instance.$name == 'InputGroup' && !props.showButtons },
 
             // Color and Background
             'bg-surface-0 dark:bg-surface-900',
-            'border',
+
+            'border border-surface-300',
+            { 'dark:border-surface-700': parent.instance.$name != 'InputGroup' },
+            { 'dark:border-surface-600': parent.instance.$name == 'InputGroup' },
             { 'border-surface-300 dark:border-surface-600': !props.invalid },
 
             // Invalid State
@@ -30,10 +36,9 @@ export default {
             { 'opacity-60': props.disabled, 'pointer-events-none': props.disabled, 'cursor-default': props.disabled }
         ]
     }),
-    input: ({ props }) => ({
+    input: ({ props, parent }) => ({
         class: [
             //Font
-            'font-sans',
             'leading-none',
 
             // Display
@@ -60,6 +65,9 @@ export default {
 
             // States
             'focus:outline-none focus:shadow-none',
+
+            // Filled State *for FloatLabel
+            { filled: parent.instance?.$name == 'FloatLabel' && props.modelValue !== null },
 
             // Misc
             'relative',
@@ -208,7 +216,6 @@ export default {
     filterinput: {
         class: [
             // Font
-            'font-sans',
             'leading-none',
 
             // Sizing

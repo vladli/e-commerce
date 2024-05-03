@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const route = useRoute();
 
-const { data, refresh } = useFetch('/api/stores/colors', {
+const { data: colors, refresh } = useFetch('/api/stores/colors', {
   query: {
     storeId: route.params.storeId
   }
@@ -30,7 +30,7 @@ definePageMeta({
 
 <template>
   <Page title="Colors">
-    <DataTable :value="data">
+    <DataTable :value="colors">
       <template #header>
         <ViewsStoresCreateColor :refresh="refresh" />
       </template>
@@ -59,7 +59,7 @@ definePageMeta({
         </template>
       </Column>
       <template #footer>
-        In total there are {{ data ? data.length : 0 }} colors.
+        In total there are {{ colors ? colors.length : 0 }} colors.
       </template>
     </DataTable>
   </Page>

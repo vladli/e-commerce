@@ -1,10 +1,26 @@
 <script setup lang="ts">
 const route = useRoute();
-const { data, refresh } = useFetch('/api/stores/categories', {
+const { data: categories, refresh } = useFetch('/api/stores/categories', {
   query: {
     storeId: route.params.storeId
   }
 });
+
+const deleteCategory = (data: any) => {
+  const result = $fetch('/api/stores/categories', {
+    method: 'DELETE',
+    body: {
+      id: data.id
+    }
+  }).then(() => {
+    refresh();
+  });
+  toast.promise(result, {
+    loading: 'Deleting category...',
+    success: 'Category deleted successfully!',
+    error: 'An error occurred while deleting the category'
+  });
+};
 
 definePageMeta({
   layout: 'dashboard'
@@ -13,7 +29,7 @@ definePageMeta({
 
 <template>
   <Page title="Categories">
-    <DataTable :value="data">
+    <DataTable :value="categories">
       <template #header>
         <ViewsStoresCreateCategory :refresh="refresh" />
       </template>
@@ -30,9 +46,19 @@ definePageMeta({
         field="createdAt"
         header="Created At"
       ></Column>
-
+      <Column header="">
+        <template #body="{ data }">
+          <Button
+            icon="pi pi-trash"
+            rounded
+            severity="danger"
+            text
+            @click="deleteCategory(data)"
+          />
+        </template>
+      </Column>
       <template #footer>
-        In total there are {{ data ? data.length : 0 }} categories.
+        In total there are {{ categories ? categories.length : 0 }} categories.
       </template>
     </DataTable>
   </Page>

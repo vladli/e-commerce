@@ -7,10 +7,10 @@ export default {
             }
         ]
     }),
-    container: ({ state, props }) => ({
+    container: ({ state, props, parent }) => ({
         class: [
             // Font
-            'font-sans text-base leading-none',
+            'text-base leading-none',
 
             // Flex
             'flex items-center flex-wrap gap-2',
@@ -41,6 +41,9 @@ export default {
             { 'ring ring-primary-400/50 dark:ring-primary-300/50': state.focused },
             { 'ring ring-primary-400/50 dark:ring-primary-300/50': state.hovered },
 
+            // Filled State *for FloatLabel
+            { filled: parent.instance?.$name == 'FloatLabel' && props.modelValue !== null && props.modelValue?.length !== 0 },
+
             // Transition
             'transition-colors duration-200',
 
@@ -56,7 +59,7 @@ export default {
     input: {
         class: [
             // Font
-            'font-sans text-base leading-[1.2]',
+            'text-base leading-[1.2]',
 
             // Size
             'w-full',
@@ -91,7 +94,7 @@ export default {
         ]
     },
     label: {
-        class: 'leading-5'
+        class: 'leading-[normal]'
     },
     removeTokenIcon: {
         class: [

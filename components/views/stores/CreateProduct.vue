@@ -40,12 +40,7 @@ const validationSchema = toTypedSchema(
     categoryId: z.object({
       id: z.string()
     }),
-    sizeId: z.object({
-      id: z.string()
-    }),
-    colorId: z.object({
-      id: z.string()
-    }),
+
     images: z.array(z.string())
   })
 );
@@ -57,8 +52,7 @@ const { handleSubmit, meta, resetForm } = useForm({
 const { value: name } = useField<string>('name');
 const { value: price } = useField<number>('price');
 const { value: categoryId } = useField('categoryId');
-const { value: sizeId } = useField('sizeId');
-const { value: colorId } = useField('colorId');
+
 const { push } = useFieldArray('images');
 
 const onSubmit = handleSubmit((values, actions) => {
@@ -71,8 +65,7 @@ const onSubmit = handleSubmit((values, actions) => {
       price: values.price,
       isFeatured: productIsFeatured.value,
       isAchieved: productIsAchieved.value,
-      sizeId: values.sizeId.id,
-      colorId: values.colorId.id,
+
       images: values.images
     }
   }).then(() => {
@@ -129,18 +122,7 @@ const imageUpload = async (data: any) => {
         :options="categories as any[]"
         placeholder="Select category"
       />
-      <Dropdown
-        v-model="sizeId"
-        option-label="name"
-        :options="sizes as any[]"
-        placeholder="Select size"
-      />
-      <Dropdown
-        v-model="colorId"
-        option-label="name"
-        :options="colors as any[]"
-        placeholder="Select color"
-      />
+
       <CldUploadWidget
         v-slot="{ open }"
         :options="{

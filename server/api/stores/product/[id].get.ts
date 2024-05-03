@@ -1,19 +1,19 @@
 import { prisma } from '~/server/prisma';
 
 export default defineEventHandler(async (event) => {
-  const query = getQuery(event);
-
+  const params = getRouterParams(event);
+  console.log(params);
   const result = await prisma.product.findUnique({
     where: {
-      id: query.productId as string
+      id: params.id
     },
     include: {
       category: true,
       images: true,
       inventory: {
         include: {
-          color: true,
-          size: true
+          size: true,
+          color: true
         }
       }
     }

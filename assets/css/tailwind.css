@@ -1,5 +1,4 @@
 @import '@steveyuowo/vue-hot-toast/vue-hot-toast.css';
-
 @layer tailwind-base {
   @tailwind base;
 }

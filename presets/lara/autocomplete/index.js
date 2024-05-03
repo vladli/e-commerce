@@ -21,7 +21,7 @@ export default {
     container: ({ props, state }) => ({
         class: [
             // Font
-            'font-sans text-base leading-none',
+            'text-base leading-none',
 
             // Flex
             'flex items-center flex-wrap',
@@ -63,10 +63,10 @@ export default {
     inputtoken: {
         class: ['py-1.5 px-0', 'inline-flex flex-auto']
     },
-    input: ({ props }) => ({
+    input: ({ props, parent }) => ({
         class: [
             // Font
-            'font-sans text-base leading-none',
+            'text-base leading-none',
 
             // Shape
             'appearance-none rounded-md',
@@ -95,6 +95,9 @@ export default {
             // States
             { 'focus:outline-none focus:outline-offset-0 focus:ring focus:ring-primary-400/50 dark:focus:ring-primary-300/50': !props.multiple },
 
+            // Filled State *for FloatLabel
+            { filled: parent.instance?.$name == 'FloatLabel' && props.modelValue !== '' },
+
             // Transition
             'transition-colors duration-200'
         ]
@@ -119,7 +122,7 @@ export default {
         ]
     },
     label: {
-        class: 'leading-5'
+        class: 'leading-[normal]'
     },
     removeTokenIcon: {
         class: [

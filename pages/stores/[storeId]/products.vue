@@ -42,14 +42,7 @@ definePageMeta({
         field="price"
         header="Price"
       />
-      <Column
-        field="size.name"
-        header="Size"
-      />
-      <Column
-        field="color.name"
-        header="Color"
-      />
+
       <Column
         field="category.name"
         header="Category"

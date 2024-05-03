@@ -22,7 +22,7 @@ export default {
                 'flex flex-auto',
 
                 // Font
-                'font-sans leading-none',
+                'leading-none',
 
                 //Text
                 { 'text-center': parent.props.showButtons && parent.props.buttonLayout == 'vertical' },
@@ -41,13 +41,15 @@ export default {
                 { 'border-0': parent.instance.$parentInstance?.$name == 'InputGroup' && !parent.props.showButtons },
 
                 // Colors
-                'text-surface-600 dark:text-surface-200',
+                'text-surface-800 dark:text-white/80',
                 'placeholder:text-surface-400 dark:placeholder:text-surface-500',
                 'bg-surface-0 dark:bg-surface-900',
                 'border',
                 { 'border-surface-300 dark:border-surface-600': !parent.props.invalid },
 
                 // Invalid State
+                'invalid:focus:ring-red-200',
+                'invalid:hover:border-red-500',
                 { 'border-red-500 dark:border-red-400': parent.props.invalid },
 
                 // States
@@ -56,7 +58,7 @@ export default {
                 { 'opacity-60 select-none pointer-events-none cursor-default': context.disabled },
 
                 // Filled State *for FloatLabel
-                { filled: parent.instance?.$name == 'FloatLabel' && context.filled },
+                { filled: parent.instance?.$parentInstance?.$name == 'FloatLabel' && parent.state.d_modelValue !== null },
 
                 //Position
                 { 'order-2': parent.props.buttonLayout == 'horizontal' || parent.props.buttonLayout == 'vertical' }

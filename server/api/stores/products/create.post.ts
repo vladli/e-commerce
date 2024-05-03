@@ -9,9 +9,7 @@ export default defineEventHandler(async (event) => {
       name: body.name as string,
       price: body.price as number,
       isFeatured: body.isFeatured as boolean,
-      isAchieved: body.isAchieved as boolean,
-      sizeId: body.sizeId as string,
-      colorId: body.colorId as string
+      isAchieved: body.isAchieved as boolean
     }
   });
   for (const image of body.images) {

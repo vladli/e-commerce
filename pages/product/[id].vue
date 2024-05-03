@@ -2,18 +2,13 @@
 const route = useRoute();
 const id = route.params.id;
 
-const { data, error } = useFetch('/api/stores/product', {
-  query: {
-    productId: id
-  }
-});
+const { data, error } = useFetch(`/api/stores/product/${id}`);
 if (error.value) {
   showError({
     statusCode: error.value.statusCode,
     statusMessage: error.value.statusMessage
   });
 }
-console.log(data.value);
 </script>
 
 <template>
@@ -24,7 +19,7 @@ console.log(data.value);
     <Galleria
       :circular="true"
       container-style="max-width: 420px"
-      :num-visible="5"
+      :num-visible="2"
       :show-item-navigators="true"
       :value="data?.images"
     >
@@ -43,7 +38,5 @@ console.log(data.value);
         />
       </template>
     </Galleria>
-
-    <div></div>
   </Page>
 </template>

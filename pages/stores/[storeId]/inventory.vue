@@ -1,11 +1,27 @@
 <script setup lang="ts">
 const route = useRoute();
 
-const { data, refresh } = useFetch('/api/stores/inventory', {
+const { data: inventory, refresh } = useFetch('/api/stores/inventory', {
   query: {
     storeId: route.params.storeId
   }
 });
+
+const deleteInventory = (data: any) => {
+  const result = $fetch('/api/stores/inventory', {
+    method: 'DELETE',
+    body: {
+      id: data.id
+    }
+  }).then(() => {
+    refresh();
+  });
+  toast.promise(result, {
+    loading: 'Deleting inventory...',
+    success: 'Inventory deleted successfully!',
+    error: 'An error occurred while deleting the inventory'
+  });
+};
 
 definePageMeta({
   layout: 'dashboard'
@@ -14,7 +30,7 @@ definePageMeta({
 
 <template>
   <Page title="Inventory">
-    <DataTable :value="data">
+    <DataTable :value="inventory">
       <template #header>
         <ViewsStoresCreateInventory :refresh="refresh" />
       </template>
@@ -39,9 +55,19 @@ definePageMeta({
         field="createdAt"
         header="Created At"
       ></Column>
-
+      <Column header="">
+        <template #body="{ data }">
+          <Button
+            icon="pi pi-trash"
+            rounded
+            severity="danger"
+            text
+            @click="deleteInventory(data)"
+          />
+        </template>
+      </Column>
       <template #footer>
-        In total there are {{ data ? data.length : 0 }} items.
+        In total there are {{ inventory ? inventory.length : 0 }} items.
       </template>
     </DataTable>
   </Page>
