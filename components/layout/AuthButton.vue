@@ -25,7 +25,7 @@ const toggle = (event) => {
   </div>
   <Button
     v-else
-    @click="signIn('google')"
+    @click="signIn()"
   >
     Log In
   </Button>

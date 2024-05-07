@@ -20,6 +20,7 @@ if (error.value) {
       <h4 class="text-2xl font-bold">{{ data?.name }}</h4>
       <p class="text-lg">{{ data?.category?.name }}</p>
       <p class="text-lg">${{ data?.price }}</p>
+      <CartAddButton :item="data as any" />
     </div>
     <div class="mx-auto max-w-screen-sm xl:mx-0">
       <Galleria
@@ -52,6 +53,7 @@ if (error.value) {
         </template>
       </Galleria>
     </div>
+
     <div class="hidden flex-col p-4 xl:flex">
       <h4 class="text-2xl font-bold">{{ data?.name }}</h4>
       <p class="text-lg">{{ data?.category?.name }}</p>

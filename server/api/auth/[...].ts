@@ -1,5 +1,7 @@
 import { NuxtAuthHandler } from '#auth';
 import GoogleProvider from 'next-auth/providers/google';
+import CredentialsProvider from 'next-auth/providers/credentials';
+
 import { prisma } from '~/server/prisma';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 
@@ -15,6 +17,28 @@ export default NuxtAuthHandler({
     GoogleProvider.default({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
+    }),
+    //@ts-expect-error
+    CredentialsProvider.default({
+      name: 'Credentials',
+      id: 'credentials',
+      credentials: {
+        username: { label: 'Username', type: 'text', value: 'demo@vladli.dev' },
+        password: { label: 'Password', type: 'password', value: '123' }
+      },
+      async authorize(credentials, req) {
+        const user = await prisma.user.findUnique({
+          where: {
+            email: credentials.username,
+            password: credentials.password
+          }
+        });
+        if (user) {
+          return user;
+        } else {
+          return null;
+        }
+      }
     })
   ],
   callbacks: {
