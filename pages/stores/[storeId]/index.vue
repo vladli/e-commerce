@@ -17,5 +17,29 @@ definePageMeta({
 </script>
 
 <template>
-  <Page :title="data?.name">asd</Page>
+  <Page
+    class="flex flex-wrap justify-around gap-4"
+    :title="data?.name"
+  >
+    <ViewsStoresDashboardCard
+      title="Billboards"
+      :value="data?.billboards.length || 0"
+    />
+    <ViewsStoresDashboardCard
+      title="Categories"
+      :value="data?.categories.length || 0"
+    />
+    <ViewsStoresDashboardCard
+      title="Sizes"
+      :value="data?.sizes.length || 0"
+    />
+    <ViewsStoresDashboardCard
+      title="Colors"
+      :value="data?.colors.length || 0"
+    />
+    <ViewsStoresDashboardCard
+      title="Products"
+      :value="data?.products.length || 0"
+    />
+  </Page>
 </template>

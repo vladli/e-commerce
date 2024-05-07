@@ -8,6 +8,13 @@ export default defineEventHandler(async (event) => {
     where: {
       id: params.storeId as string,
       userId: session?.user?.id
+    },
+    include: {
+      billboards: true,
+      products: true,
+      categories: true,
+      sizes: true,
+      colors: true
     }
   });
   if (!store) {
