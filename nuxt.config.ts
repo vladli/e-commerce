@@ -21,7 +21,8 @@ export default defineNuxtConfig({
     // 'nuxt-security',
     '@pinia/nuxt',
     '@nuxtjs/cloudinary',
-    '@vee-validate/nuxt'
+    '@vee-validate/nuxt',
+    'dayjs-nuxt'
   ],
   imports: {
     presets: [
@@ -39,6 +40,11 @@ export default defineNuxtConfig({
     cloudinary: {
       baseURL: `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/`
     }
+  },
+  dayjs: {
+    locales: ['en'],
+    plugins: ['relativeTime', 'utc', 'timezone'],
+    defaultLocale: 'en'
   },
   cloudinary: {
     cloudName: process.env.CLOUDINARY_CLOUD_NAME,

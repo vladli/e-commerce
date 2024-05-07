@@ -2,11 +2,11 @@ import { getServerSession } from '#auth';
 import { prisma } from '~/server/prisma';
 
 export default defineEventHandler(async (event) => {
-  const query = getQuery(event);
+  const params = getRouterParams(event);
   const session = await getServerSession(event);
   const store = await prisma.store.findUnique({
     where: {
-      id: query.storeId as string,
+      id: params.storeId as string,
       userId: session?.user?.id
     }
   });

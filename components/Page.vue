@@ -6,6 +6,9 @@ defineProps({
     default: ''
   }
 });
+defineOptions({
+  inheritAttrs: false
+});
 </script>
 
 <template>
@@ -18,7 +21,7 @@ defineProps({
     >
       {{ title }}
     </h2>
-    <div>
+    <div v-bind="$attrs">
       <slot />
     </div>
   </div>

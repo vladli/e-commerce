@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { DataTableRowEditSaveEvent } from 'primevue/datatable';
+
 const route = useRoute();
 
 const { data: sizes, refresh } = useFetch('/api/stores/sizes', {
@@ -23,6 +25,29 @@ const deleteSize = (data: any) => {
   });
 };
 
+const editingRows = ref();
+
+const onRowEditSave = (event: DataTableRowEditSaveEvent) => {
+  const result = $fetch('/api/stores/sizes', {
+    method: 'PUT',
+    query: {
+      id: event.data.id,
+      storeId: event.data.storeId
+    },
+    body: {
+      name: event.newData.name,
+      value: event.newData.value
+    }
+  }).then(() => {
+    refresh();
+  });
+  toast.promise(result, {
+    loading: 'Saving size...',
+    success: 'Size saved successfully!',
+    error: 'An error occurred while saving the size'
+  });
+};
+
 definePageMeta({
   layout: 'dashboard'
 });
@@ -30,23 +55,41 @@ definePageMeta({
 
 <template>
   <Page title="Sizes">
-    <DataTable :value="sizes">
+    <DataTable
+      v-model:editingRows="editingRows"
+      edit-mode="row"
+      :value="sizes"
+      @row-edit-save="onRowEditSave"
+    >
       <template #header>
         <ViewsStoresCreateSize :refresh="refresh" />
       </template>
       <Column
         field="name"
         header="Name"
-      ></Column>
+      >
+        <template #editor="{ data, field }">
+          <InputText v-model="data[field]" />
+        </template>
+      </Column>
       <Column
         field="value"
         header="Value"
-      ></Column>
+      >
+        <template #editor="{ data, field }">
+          <InputText v-model="data[field]" />
+        </template>
+      </Column>
 
+      <Column header="Created At">
+        <template #body="slotProps">
+          {{ $dayjs(slotProps.data.createdAt).format('YYYY-MM-DD HH:mm:ss') }}
+        </template>
+      </Column>
       <Column
-        field="createdAt"
-        header="Created At"
-      ></Column>
+        body-style="text-align:right"
+        :row-editor="true"
+      />
       <Column header="">
         <template #body="{ data }">
           <Button

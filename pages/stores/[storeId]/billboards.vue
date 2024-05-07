@@ -58,10 +58,11 @@ definePageMeta({
         </template>
       </Column>
 
-      <Column
-        field="createdAt"
-        header="Created At"
-      ></Column>
+      <Column header="Created At">
+        <template #body="slotProps">
+          {{ $dayjs(slotProps.data.createdAt).format('YYYY-MM-DD HH:mm:ss') }}
+        </template>
+      </Column>
       <Column header="">
         <template #body="{ data }">
           <Button

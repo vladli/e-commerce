@@ -64,7 +64,7 @@ const totalPrice = computed(() => {
                   :alt="item.name"
                   image-class="rounded-md"
                   preview
-                  :src="item.images[0] || ''"
+                  :src="item?.images?.[0]?.url || ''"
                   width="100"
                 />
               </td>

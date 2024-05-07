@@ -1,11 +1,8 @@
 <script setup lang="ts">
 const route = useRoute();
+const id = route.params.storeId;
 
-const { data } = await useFetch(`/api/stores/store/:storeId`, {
-  query: {
-    storeId: route.params.storeId
-  }
-});
+const { data } = await useFetch(`/api/stores/store/${id}`);
 
 definePageMeta({
   layout: 'dashboard'

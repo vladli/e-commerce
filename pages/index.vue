@@ -8,7 +8,6 @@ const layout = ref<DataViewProps['layout']>('grid');
 const getSeverity = (item: any) => {
   return item.inventory >= 10 ? 'success' : 'danger';
 };
-console.log(data);
 </script>
 
 <template>

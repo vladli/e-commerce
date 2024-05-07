@@ -1,6 +1,19 @@
-import type { Products } from '@prisma/client';
+import type { Prisma } from '@prisma/client';
 
-export interface ProductWithQuantityType extends Products {
+type InventoryType = Prisma.ProductGetPayload<{
+  include: {
+    category: true;
+    images: true;
+    inventory: {
+      include: {
+        size: true;
+        color: true;
+      };
+    };
+  };
+}>;
+
+export interface ProductWithQuantityType extends InventoryType {
   quantity: number;
 }
 

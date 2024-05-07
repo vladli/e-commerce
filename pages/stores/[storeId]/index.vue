@@ -1,11 +1,9 @@
 <script setup lang="ts">
 const route = useRoute();
+const id = route.params.storeId;
 
-const { data, error } = await useFetch(`/api/stores/store/:storeId`, {
-  query: {
-    storeId: route.params.storeId
-  }
-});
+const { data, error } = await useFetch(`/api/stores/store/${id}`);
+
 if (error.value) {
   showError({
     statusCode: error.value.statusCode,
