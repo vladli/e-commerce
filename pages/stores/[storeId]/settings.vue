@@ -5,7 +5,8 @@ const id = route.params.storeId;
 const { data } = await useFetch(`/api/stores/store/${id}`);
 
 definePageMeta({
-  layout: 'dashboard'
+  layout: 'dashboard',
+  middleware: 'auth'
 });
 </script>
 

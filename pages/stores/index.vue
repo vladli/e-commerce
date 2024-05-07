@@ -1,5 +1,9 @@
 <script setup lang="ts">
 const { data, refresh } = useFetch('/api/stores');
+
+definePageMeta({
+  middleware: 'auth'
+});
 </script>
 
 <template>

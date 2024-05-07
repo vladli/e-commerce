@@ -33,7 +33,8 @@ const deleteBillboard = (data: any) => {
 };
 
 definePageMeta({
-  layout: 'dashboard'
+  layout: 'dashboard',
+  middleware: 'auth'
 });
 </script>
 
