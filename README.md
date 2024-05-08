@@ -1,75 +1,38 @@
-# Nuxt 3 Minimal Starter
+<h1 align="center" id="title">E-commerce</h1>
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+<p align="center"><img src="https://e-commerce.vladli.dev/Logo.png" alt="project-image"></p>
 
-## Setup
+<p id="description">This website was created for my portfolio project. For the database I used MongoDB with Prisma. You can sign in with Google and credentials (e-mail).</p>
 
-Make sure to install the dependencies:
+<p align="center"><img src="https://img.shields.io/badge/nuxtjs-00DC82.svg?style=for-the-badge&amp;logo=nuxtdotjs&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&amp;logo=tailwind-css&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&amp;logo=mongodb&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/prisma-2D3748.svg?style=for-the-badge&amp;logo=prisma&amp;logoColor=white" alt="shields"></p>
 
-```bash
-# npm
+<h2>🚀 Demo</h2>
+
+[https://e-commerce.vladli.dev/](https://e-commerce.vladli.dev/)
+
+<h2>🛠️ Installation Steps:</h2>
+
+<p>1. Download and install all packages</p>
+
+```
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+<p>2. Run the development server:</p>
 
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
+```
 npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+<p>3. Open http://localhost:3000 with your browser to see the result.</p>
 
-Build the application for production:
+<h2>💻 Built with</h2>
 
-```bash
-# npm
-npm run build
+Technologies used in the project:
 
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- NuxtJs
+- Nuxt-Auth
+- TailwindCSS
+- Pinia
+- MongoDB
+- Prisma
