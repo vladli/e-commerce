@@ -1,6 +1,14 @@
 <script setup lang="ts">
+import type { DataTableRowEditSaveEvent } from 'primevue/datatable';
+
 const route = useRoute();
 const { data: categories, refresh } = useFetch('/api/stores/categories', {
+  query: {
+    storeId: route.params.storeId
+  }
+});
+
+const { data: billboards } = useFetch('/api/stores/billboard', {
   query: {
     storeId: route.params.storeId
   }
@@ -22,6 +30,29 @@ const deleteCategory = (data: any) => {
   });
 };
 
+const editingRows = ref();
+
+const onRowEditSave = (event: DataTableRowEditSaveEvent) => {
+  const result = $fetch('/api/stores/categories', {
+    method: 'PUT',
+    query: {
+      id: event.data.id,
+      storeId: event.data.storeId
+    },
+    body: {
+      name: event.newData.name,
+      billboardId: event.newData.billboardId
+    }
+  }).then(() => {
+    refresh();
+  });
+  toast.promise(result, {
+    loading: 'Saving category...',
+    success: 'Category saved successfully!',
+    error: 'An error occurred while saving the category'
+  });
+};
+
 definePageMeta({
   layout: 'dashboard',
   middleware: 'auth'
@@ -30,24 +61,46 @@ definePageMeta({
 
 <template>
   <Page title="Categories">
-    <DataTable :value="categories">
+    <DataTable
+      v-model:editingRows="editingRows"
+      edit-mode="row"
+      :value="categories"
+      @row-edit-save="onRowEditSave"
+    >
       <template #header>
         <ViewsStoresCreateCategory :refresh="refresh" />
       </template>
       <Column
         field="name"
         header="Name"
-      ></Column>
+      >
+        <template #editor="{ data, field }">
+          <InputText v-model="data[field]" />
+        </template>
+      </Column>
       <Column
         field="billboard.label"
         header="Billboard"
-      ></Column>
+      >
+        <template #editor="{ data }">
+          <Dropdown
+            v-model="data['billboardId']"
+            option-label="label"
+            option-value="id"
+            :options="billboards as any[]"
+          ></Dropdown>
+        </template>
+      </Column>
 
       <Column header="Created At">
         <template #body="slotProps">
           {{ $dayjs(slotProps.data.createdAt).format('YYYY-MM-DD HH:mm:ss') }}
         </template>
       </Column>
+      <Column
+        body-style="text-align:right"
+        :row-editor="true"
+      />
       <Column header="">
         <template #body="{ data }">
           <Button

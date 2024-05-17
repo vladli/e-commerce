@@ -91,6 +91,15 @@ definePageMeta({
             <ColorPicker v-model="data[field]" />
           </div>
         </template>
+        <template #body="slotProps">
+          <div class="flex items-center gap-2">
+            <span>{{ '#' + slotProps.data.value }}</span>
+            <div
+              class="size-6 rounded-full"
+              :style="{ backgroundColor: '#' + slotProps.data.value }"
+            />
+          </div>
+        </template>
       </Column>
 
       <Column header="Created At">

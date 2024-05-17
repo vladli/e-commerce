@@ -35,6 +35,16 @@ definePageMeta({
       <template #header>
         <ViewsStoresCreateProduct :refresh="refresh" />
       </template>
+      <Column header="Image">
+        <template #body="slotProps">
+          <Img
+            alt=""
+            class="w-24 rounded shadow-md"
+            preview
+            :src="slotProps.data.images?.[0]?.url"
+          />
+        </template>
+      </Column>
       <Column
         field="name"
         header="Name"

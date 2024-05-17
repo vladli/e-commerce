@@ -8,7 +8,8 @@ export default defineEventHandler(async (event) => {
       storeId: query.storeId as string
     },
     include: {
-      category: true
+      category: true,
+      images: true
     }
   });
   return result;

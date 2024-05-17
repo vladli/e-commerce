@@ -22,7 +22,6 @@ const deleteInventory = (data: any) => {
     error: 'An error occurred while deleting the inventory'
   });
 };
-
 definePageMeta({
   layout: 'dashboard',
   middleware: 'auth'
@@ -35,22 +34,36 @@ definePageMeta({
       <template #header>
         <ViewsStoresCreateInventory :refresh="refresh" />
       </template>
+      <Column header="Image">
+        <template #body="slotProps">
+          <Img
+            alt=""
+            class="w-24 rounded shadow-md"
+            preview
+            :src="slotProps.data.product.images?.[0]?.url"
+          />
+        </template>
+      </Column>
       <Column
         field="product.name"
         header="Name"
-      ></Column>
+      />
+      <Column
+        field="product.price"
+        header="Price"
+      />
       <Column
         field="size.name"
         header="Size"
-      ></Column>
+      />
       <Column
         field="color.name"
         header="Color"
-      ></Column>
+      />
       <Column
         field="quantity"
         header="Quantity"
-      ></Column>
+      />
 
       <Column header="Created At">
         <template #body="slotProps">
