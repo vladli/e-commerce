@@ -10,7 +10,9 @@ export default defineNuxtConfig({
       titleTemplate: '%s | E-commerce'
     }
   },
+
   css: ['~/assets/css/tailwind.css', '/node_modules/primeicons/primeicons.css'],
+
   modules: [
     '@nuxt/image',
     'nuxt-primevue',
@@ -24,6 +26,7 @@ export default defineNuxtConfig({
     '@vee-validate/nuxt',
     'dayjs-nuxt'
   ],
+
   imports: {
     presets: [
       {
@@ -36,25 +39,30 @@ export default defineNuxtConfig({
       }
     ]
   },
+
   image: {
     cloudinary: {
       baseURL: `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/`
     }
   },
+
   dayjs: {
     locales: ['en'],
     plugins: ['relativeTime', 'utc', 'timezone'],
     defaultLocale: 'en'
   },
+
   cloudinary: {
     cloudName: process.env.CLOUDINARY_CLOUD_NAME,
     uploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET,
     apiKey: process.env.CLOUDINARY_API_KEY
   },
+
   // components: [{ path: '~/views', pathPrefix: true }, '~/components'],
   colorMode: {
     classSuffix: ''
   },
+
   primevue: {
     // cssLayerOrder: "tailwind-base, primevue, tailwind-utilities",
     options: {
@@ -63,19 +71,14 @@ export default defineNuxtConfig({
     },
     importPT: { from: path.resolve(__dirname, './presets/lara/') }
   },
+
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {}
     }
   },
-  auth: {
-    isEnabled: true,
 
-    provider: {
-      type: 'authjs'
-    }
-  }
   // security: {
   //   headers: {
   //     crossOriginEmbedderPolicy: false,
@@ -85,4 +88,13 @@ export default defineNuxtConfig({
   //     }
   //   }
   // }
+  auth: {
+    isEnabled: true,
+
+    provider: {
+      type: 'authjs'
+    }
+  },
+
+  compatibilityDate: '2024-07-24'
 });
