@@ -24,7 +24,7 @@
     "cloudinary": "^2.3.0",
     "dayjs": "^1.11.12",
     "primeicons": "^7.0.0",
-    "primevue": "^3.52.0",
+    "primevue": "^4.0.1",
     "vue": "^3.4.33",
     "vue-router": "^4.4.0",
     "zod": "^3.23.8"
@@ -33,6 +33,7 @@
     "@nuxt/eslint-config": "^0.3.13",
     "@nuxtjs/color-mode": "^3.4.2",
     "@nuxtjs/tailwindcss": "^6.12.1",
+    "@primevue/nuxt-module": "^4.0.1",
     "@sidebase/nuxt-auth": "^0.8.1",
     "dayjs-nuxt": "^2.1.9",
     "eslint-config-prettier": "^9.1.0",
@@ -42,7 +43,6 @@
     "next-auth": "^4.21.1",
     "nuxt": "^3.12.4",
     "nuxt-icon": "0.6.10",
-    "nuxt-primevue": "^0.3.1",
     "nuxt-security": "2.0.0-rc.9",
     "prisma": "^5.17.0"
   }

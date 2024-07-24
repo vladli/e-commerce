@@ -1,10 +1,5 @@
 export default {
-    root: {
-        class: [
-            // Flexbox
-            'flex'
-        ]
-    },
+    root: 'flex',
     controls: {
         class: [
             // Flexbox & Alignment
@@ -14,7 +9,7 @@ export default {
             'p-5'
         ]
     },
-    moveupbutton: {
+    pcMoveUpButton: {
         root: ({ context }) => ({
             class: [
                 // Flexbox & Alignment
@@ -24,9 +19,9 @@ export default {
                 'rounded-md',
 
                 // Color
-                'text-white dark:text-surface-900',
-                'bg-primary-500 dark:bg-primary-400',
-                'border border-primary-500 dark:border-primary-400',
+                'text-primary-contrast',
+                'bg-primary',
+                'border border-primary',
 
                 // Spacing & Size
                 'w-12',
@@ -37,9 +32,9 @@ export default {
                 'transition duration-200 ease-in-out',
 
                 // State
-                'hover:bg-primary-600 dark:hover:bg-primary-300 hover:border-primary-600 dark:hover:border-primary-300',
+                'hover:bg-primary-emphasis hover:border-primary-emphasis',
                 'focus:outline-none focus:outline-offset-0 focus:ring',
-                'focus:ring-primary-400/50 dark:focus:ring-primary-300/50',
+                'focus:ring-primary/50',
                 { 'cursor-default pointer-events-none opacity-60': context.disabled },
 
                 // Interactivity
@@ -56,7 +51,7 @@ export default {
             ]
         }
     },
-    movedownbutton: {
+    pcMoveDownButton: {
         root: ({ context }) => ({
             class: [
                 // Flexbox & Alignment
@@ -66,9 +61,9 @@ export default {
                 'rounded-md',
 
                 // Color
-                'text-white dark:text-surface-900',
-                'bg-primary-500 dark:bg-primary-400',
-                'border border-primary-500 dark:border-primary-400',
+                'text-primary-contrast',
+                'bg-primary',
+                'border border-primary',
 
                 // Spacing & Size
                 'w-12',
@@ -79,9 +74,9 @@ export default {
                 'transition duration-200 ease-in-out',
 
                 // State
-                'hover:bg-primary-600 dark:hover:bg-primary-300 hover:border-primary-600 dark:hover:border-primary-300',
+                'hover:bg-primary-emphasis hover:border-primary-emphasis',
                 'focus:outline-none focus:outline-offset-0 focus:ring',
-                'focus:ring-primary-400/50 dark:focus:ring-primary-300/50',
+                'focus:ring-primary/50',
                 { 'cursor-default pointer-events-none opacity-60': context.disabled },
 
                 // Interactivity
@@ -98,7 +93,7 @@ export default {
             ]
         }
     },
-    movetopbutton: {
+    pcMoveTopButton: {
         root: ({ context }) => ({
             class: [
                 // Flexbox & Alignment
@@ -108,9 +103,9 @@ export default {
                 'rounded-md',
 
                 // Color
-                'text-white dark:text-surface-900',
-                'bg-primary-500 dark:bg-primary-400',
-                'border border-primary-500 dark:border-primary-400',
+                'text-primary-contrast',
+                'bg-primary',
+                'border border-primary',
 
                 // Spacing & Size
                 'w-12',
@@ -121,9 +116,9 @@ export default {
                 'transition duration-200 ease-in-out',
 
                 // State
-                'hover:bg-primary-600 dark:hover:bg-primary-300 hover:border-primary-600 dark:hover:border-primary-300',
+                'hover:bg-primary-emphasis hover:border-primary-emphasis',
                 'focus:outline-none focus:outline-offset-0 focus:ring',
-                'focus:ring-primary-400/50 dark:focus:ring-primary-300/50',
+                'focus:ring-primary/50',
                 { 'cursor-default pointer-events-none opacity-60': context.disabled },
 
                 // Interactivity
@@ -140,7 +135,7 @@ export default {
             ]
         }
     },
-    movebottombutton: {
+    pcMoveBottomButton: {
         root: ({ context }) => ({
             class: [
                 // Flexbox & Alignment
@@ -150,9 +145,9 @@ export default {
                 'rounded-md',
 
                 // Color
-                'text-white dark:text-surface-900',
-                'bg-primary-500 dark:bg-primary-400',
-                'border border-primary-500 dark:border-primary-400',
+                'text-primary-contrast',
+                'bg-primary',
+                'border border-primary',
 
                 // Spacing & Size
                 'w-12',
@@ -163,9 +158,9 @@ export default {
                 'transition duration-200 ease-in-out',
 
                 // State
-                'hover:bg-primary-600 dark:hover:bg-primary-300 hover:border-primary-600 dark:hover:border-primary-300',
+                'hover:bg-primary-emphasis hover:border-primary-emphasis',
                 'focus:outline-none focus:outline-offset-0 focus:ring',
-                'focus:ring-primary-400/50 dark:focus:ring-primary-300/50',
+                'focus:ring-primary/50',
                 { 'cursor-default pointer-events-none opacity-60': context.disabled },
 
                 // Interactivity
@@ -182,76 +177,5 @@ export default {
             ]
         }
     },
-    container: {
-        class: ['flex-auto']
-    },
-    header: {
-        class: [
-            'font-bold',
-
-            // Shape
-            'border-b-0 rounded-t-md',
-
-            // Spacing
-            'p-5',
-
-            // Color
-            'text-surface-700 dark:text-white/80',
-            'bg-surface-50 dark:bg-surface-800',
-            'border border-surface-200 dark:border-surface-700'
-        ]
-    },
-    list: {
-        class: [
-            // Spacing
-            'list-none m-0 p-0',
-
-            // Size
-            'min-h-[12rem] max-h-[24rem]',
-
-            // Shape
-            'rounded-b-md',
-
-            // Color
-            'text-surface-600 dark:text-white/80',
-            'bg-surface-0 dark:bg-surface-800',
-            'border border-surface-200 dark:border-surface-700',
-
-            // Spacing
-            'py-3 px-0',
-
-            // Focus & Outline
-            'outline-none',
-
-            // Misc
-            'overflow-auto'
-        ]
-    },
-    item: ({ context }) => ({
-        class: [
-            // Position
-            'relative',
-
-            // Spacing
-            'py-3 px-5 m-0',
-
-            // Shape
-            'border-none',
-
-            // Transition
-            'transition duration-200',
-
-            // Color
-            'text-surface-700 dark:text-white/80',
-            { 'bg-primary-500/20 dark:bg-primary-300/20': context.active && !context.focused },
-            { 'bg-primary-500/30 dark:bg-primary-400/30': context.active && context.focused },
-            { 'bg-surface-100 dark:bg-surface-700/70': !context.active && context.focused },
-
-            // State
-            'hover:bg-surface-100 dark:hover:bg-surface-700',
-
-            // Misc
-            'cursor-pointer overflow-hidden'
-        ]
-    })
+    container: 'flex-auto'
 };

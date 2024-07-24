@@ -15,8 +15,8 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxt/image',
-    'nuxt-primevue',
     '@nuxtjs/tailwindcss',
+    '@primevue/nuxt-module',
     'nuxt-icon',
     '@nuxtjs/color-mode',
     '@sidebase/nuxt-auth',
@@ -94,7 +94,5 @@ export default defineNuxtConfig({
     provider: {
       type: 'authjs'
     }
-  },
-
-  compatibilityDate: '2024-07-24'
+  }
 });
